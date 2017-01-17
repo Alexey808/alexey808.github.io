@@ -12,11 +12,22 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 [my](<script src="https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"></script>)
 
 1234
-<script src="
+
 ```JavaScript
-https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"
+// Парсинг
+// Из URL "https://ya.ru/?tralala=true" получим "Object {tralala: "true"}"
+
+function parseGetParams() { 
+   var $_GET = {};
+   var __GET = window.location.search.substring(1).split("&");
+   for(var i=0; i<__GET.length; i++) { 
+      var getVar = __GET[i].split("="); 
+      $_GET[getVar[0]] = typeof(getVar[1])=="undefined" ? "" : getVar[1]; 
+   } 
+   return $_GET; 
+}
 ```
-></script>
+
 ```markdown
 Syntax highlighted code block
 
