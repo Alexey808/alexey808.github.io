@@ -12,10 +12,11 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 [my](<script src="https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"></script>)
 
 1234
+<script src="
 ```JavaScript
-<script src="https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"></script>
+https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"
 ```
-
+></script>
 ```markdown
 Syntax highlighted code block
 
