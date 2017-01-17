@@ -9,8 +9,8 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-[my](https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js)
-
+[my](<script src="https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"></script>)
+<script src="https://gist.github.com/Alexey808/3e0c42f7211f4f85af8a3a45d89f5c6e.js"></script>
 
 ```markdown
 Syntax highlighted code block
