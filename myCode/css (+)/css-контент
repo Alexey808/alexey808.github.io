@@ -1,0 +1,128 @@
+### КОНТЕНТ ###
+
+	content -> Позволяет вставлять генерируемое содержание в текст веб-страницы, которое первоначально в тексте отсутствует.
+		/* content: <строка> | attr(<атрибут>) | open-quote | close-quote | no-open-quote | no-close-quote | url | counter | normal | none */
+		content: open-quote; /* Добавляем перед текстом открывающую кавычку */
+		content: close-quote; /* Добавляем после текста закрывающую кавычку */
+		content: no-open-quotes; /* Отменяет добавление открывающей кавычки. */
+	 	content: no-close-quote; /* Отменяет добавление закрывающей кавычки */
+	 	content: none; /* Не добавляет никакого содержимого. */
+		content: normal; /* Задаётся как none для псевдоэлементов ::before и ::after. */
+		
+		==>  url /* Абсолютный или относительный адрес вставляемого объекта. Если указанный файл браузер не может отобразить, то значение игнорируется. -> */
+			p:before 
+			{
+				content:url(smiley.gif);
+		} <== url
+
+	    ==> counter /* Выводит значение счётчика, заданного свойством counter-reset. -> */
+		    body { counter-reset: section; }     /*инициализируем два счетчика*/
+		    h1 { counter-reset: subsection; }
+		    h1:before {
+		      counter-increment: section 1;    /*определяем инкремент для разделов*/
+		      content: "Раздел " counter(section) ". ";
+		    }
+		    h2:before {
+		      counter-increment: subsection 1; /*определяем инкремент для подразделов*/
+		      content: counter(section) "." counter(subsection) " ";
+		    } 
+		    ...
+		    <body>
+			  	<h1>Самоучитель HTML</h1>
+			  	<h2>Справочник HTML</h2>
+			  	<h2>Самоучитель XHTML</h2>
+			  	<h2>Самоучитель CSS</h2>
+			  	<h1>Программирование</h1>
+			  	<h2>JavaScript</h2>
+			  	<h2>VBScript</h2>
+			  	<h1>Самоучитель XML</h1>
+			  	<h2>XML</h2>
+			  	<h2>XSL</h2>
+			</body>
+		<== end counter
+
+	counter-increment -> Предназначено для увеличения значения счётчика приращений, который задается свойством counter-reset.
+		/* counter-increment: none | <переменная> | <число> */
+		
+		==> counter-increment /* -> */
+			body {
+		    	counter-reset: heading; /* Инициируем счетчик */
+		   	}
+		   		h2:before {
+		    	counter-increment: heading; /* Указываем идентификатор счетчика */
+		    	content: "Глава " counter(heading) ". "; /* Выводим текст перед содержимым тега <h2> */
+		   	}
+		   	...
+		   	<body>
+				<h2>Теория ловли льва в пустыне</h2>
+				<h2>Методы инверсной кинематики</h2>
+				<h2>Ловля льва численными методами</h2>
+			</body>
+		<== end counter-increment 
+
+	counter-reset -> Устанавливает идентификатор, в котором будет храниться счетчик отображений определенного элемента, а также начальное значение счетчика.
+		/* counter-reset: none | <переменная> | <число> */
+		==> counter-reset /* -> */
+			li { list-style-type: none; } /* Убираем исходную нумерацию у списка */
+			ol { counter-reset: list1; } /* Инициируем счетчик */
+			ol li:before {
+				counter-increment: list1; /* Увеличиваем значение счетчика */
+				content: counter(list1) ". "; /* Выводим число */
+			}
+			ol ol { counter-reset: list2; } /* Инициируем счетчик вложенного списка */
+			ol ol li:before {
+				counter-increment: list2; /* Увеличиваем значение счетчика вложенного списка */
+				content: counter(list1) "." counter(list2) ". "; /* Выводим число */
+			}
+			...
+			<body>
+				<ol>
+					<li>Пункт
+						<ol>
+							<li>Подпункт</li>
+							<li>Подпункт</li>
+							<li>Подпункт</li>
+						</ol>
+					</li>
+					<li>Пункт
+						<ol>
+							<li>Подпункт</li>
+							<li>Подпункт</li>
+						</ol>
+					</li>
+				</ol>
+			</body>
+		<== end counter-reset
+
+	quotes -> Устанавливает тип кавычек, который применяется в тексте документа.
+		/* quotes: <Строка> <Строка> | none */
+		q {
+			quotes: "\00ab" "\00bb"; /* Кавычки в виде двойных угловых скобок */
+		}
+
+	Псевдоэлемент ::after -> Псевдоэлемент, который используется для вывода желаемого контента после элемента, к которому он добавляется.
+		/* Селектор::before { content: "текст" } */
+		p.new::after {
+	      	content: "Новьё!"; /* Добавляемый текст */ 
+	      	color: #333; /* Цвет текста */ 
+	      	background-color: #fc0; /* Цвет фона */ 
+	      	font-size: 90%; /* Размер шрифта */ 
+	      	padding: 2px; /* Поля вокруг текста */ 
+   		}
+   		...
+   		<p class="new"> ... </p>
+		
+	Псевдоэлемент ::before -> Применяется для отображения желаемого контента до элемента, к которому он добавляется.
+		/* Селектор::before { content: "текст" } */
+		li::before {
+    		content: "¶ "; /* Добавляем желаемый символ перед элементом списка */ 
+    	}
+    	li {
+    		list-style: none; /* Убираем исходные маркеры */ 
+    	}
+    	...
+    	<ul>
+    		<li>Альфа</li>
+		    <li>Бета</li>
+		    <li>Гамма</li>
+	    </ul>

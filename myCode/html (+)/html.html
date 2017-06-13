@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="utf-8"> 											<!-- Кодировка -->
+	<meta name="description" content="Описание сайта">				<!-- Описание сайта -->
+	<meta name="keywords" content="Ключевые слова">					<!-- Ключевые слова -->
+
+	<link rel="shortcut icon" href="http://..." type="image/x-icon"><!-- Иконка для сайта -->
+	<link rel="stylesheet" href="css/style.css"> 					<!-- Подключение стилей -->
+	<link rel="stylesheet" href="css/font-awesome.min.css"> 		<!-- Подключение библиотеки иконок -->
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+	<script type="text/javascript" src="jquery-2.1.4.js"></script> 	<!-- Подключение самого JavaQuery -->
+	<script type="text/javascript" src="jquery.knob.js"></script> 	<!-- Подключение библиотеки JavaQuery knob, индикаторы загрузки -->
+
+
+	<!-- При одновременном указании async и defer в современных браузерах будет использован только async, 
+	в IE9- – только defer.
+		defer - используют в тех случаях, когда второй скрипт 2.js зависит от первого 1.js. 
+			Cкрипт с defer сработает, когда весь HTML-документ будет обработан браузером 
+		async - Может загрузится до того как догрузится вся страница
+		 -->
+	<!-- defer. 
+			
+	-->
+	<script src="1.js" defer></script> <!-- defer гарантирует что порядом загрузки скриптов будет сохранён-->
+	<script src="2.js" defer></script> <!--Может загрузится раньше но будет ждать пока догрузится первый скрипт -->
+	<!-- async (IE9-)
+		
+	-->
+	<script src="1.js" async></script> <!-- async. первым сработает тот скрипт, который раньше загрузится-->
+	<script src="2.js" async></script>	
+	<title></title>
+
+</head>
+
+<body>
+  <header>...</header>
+  <nav>...</nav>
+  <article>
+    <section>
+     ...
+    </section>
+  </article>
+  <aside>...</aside>
+  <footer>...</footer>
+</body>
+
+</html>
