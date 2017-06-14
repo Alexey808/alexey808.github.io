@@ -18,9 +18,10 @@ git branch laiten
 ```
 git add .
 git commit -m "commit"
-
 git checkout laiten
+
 git fetch myurl master
+git pull --rebase myurl master
 
 git push shared laiten  #туда
 git pull shared master  #сюда
