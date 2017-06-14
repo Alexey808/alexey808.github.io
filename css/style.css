@@ -1,14 +1,19 @@
 body {
 	margin: 0px;
 	padding: 0px;
+	background-color: #fff;
 }
 .header {
 	background-color: #24292e;
 	color: #fff;
 	text-align: center;
+	padding: 1px;
+
 }
 .footer {
 	color: #333;
+	height: 100px;
+	background-color: #efefef;
 	border-top: 1px solid #000;
 }
 

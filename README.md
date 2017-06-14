@@ -30,11 +30,17 @@ git status
 git branch -a
 git remote -v  //просмотреть адреса, привязанные к репозиторию
 git remote show shared //где shared наименование адреса
+<<<<<<< HEAD
+
+#Аллиасы
+git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+=======
 ```
 ### Аллиасы
 ```
 git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 ```
+>>>>>>> 9ef517020caa92e4beffa81f0629f602b0fd3089
 
 ### Markdown
 
