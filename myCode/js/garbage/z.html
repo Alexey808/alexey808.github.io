@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">body{background: #5bd4b6;}</style>
+</head>
+<body>
+<div id="main" >main</div> 
+<script>
+"use strict";
+
+var expr = prompt("Введите выражение?", '2*3+2');
+console.log( eval(expr) );
+
+
+
+</script>
+
+</body>
+</html>
+
+<!-- 
+document.getElementById('main').innerHTML = n;
+style="background: #5bd4b6;"
+  <div id="lol" style="background: #5bd4b6;">hac</html>
+<
+ -->
+<!-- 
+document.getElementById('main').innerHTML = <div id="lol" style="background: #5bd4b6;">hac</html>;
+ -->
+<!-- 
+function filter(arr, func) {
+  var result = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    var val = arr[i];
+    if (func(val)) {
+      result.push(val);
+    }
+  }
+
+  return result;
+}
+
+function inBetween(a, b) {
+    return function(x) {
+      return x >= a && x <= b;
+    };
+  }
+
+function inArray(arr) {
+    return function(x) {
+      return arr.indexOf(x) != -1;
+    };
+  }
+
+var arr = [1, 2, 3, 4, 5, 6, 7];
+console.log( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+console.log( filter(arr, inArray([1, 2, 10])) ); // 1,2
+// console.log(inBetween(3, 6));
+// console.log(inArray([1, 2, 10]));
+ -->
+
+
+
+ <!-- 
+[
+  { "keys": ["ctrl+j"], "command": "move", "args": {"by": "characters", "forward": false} },
+  { "keys": ["ctrl+l"], "command": "move", "args": {"by": "characters", "forward": true} },
+  { "keys": ["ctrl+i"], "command": "move", "args": {"by": "lines", "forward": false} },
+  { "keys": ["ctrl+k"], "command": "move", "args": {"by": "lines", "forward": true} },
+
+  { "keys": ["ctrl+shift+j"], "command": "move", "args": {"by": "characters", "forward": false, "extend": true} },
+  { "keys": ["ctrl+shift+l"], "command": "move", "args": {"by": "characters", "forward": true, "extend": true} },
+  { "keys": ["ctrl+shift+i"], "command": "move", "args": {"by": "lines", "forward": false, "extend": true} },
+  { "keys": ["ctrl+shift+k"], "command": "move", "args": {"by": "lines", "forward": true, "extend": true} },
+
+  { "keys": ["ctrl+enter"], "command": "toggle_side_bar" }    
+
+]
+
+  -->
+
+
+
+  <!-- 
+
+if ( !(arguments[0] in makeCaching) ) {
+makeCaching[arguments[0]] = f.call(this,arguments[0]);
+}
+
+
+wrapper - обёртка
+ -->

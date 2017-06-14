@@ -1,0 +1,1368 @@
+
+
++----------------------------------------------------------+
+| Cовокупность браузерных объектов												 |
+| http://learn.javascript.ru/browser-environment					 |
++----------------------------------------------------------+
+|																													 |
+|										  +--------------+										 |
+|					+-----------|    window    |-----------+				 |
+|					|					  +--------------+					 |				 |
+|					|			 							|									 |				 |
+|			DOM	|								BOM	|								 JS|				 |
+|		+----------+    +-----------------+    +-----------+	 |
+|		| document |		|	navigator 			|		 |	Object 	 | 	 |
+|   +----------+		|	screen					|		 |	Array    |	 |
+|										|	location				|		 |	Function |   |
+|										|	frames    			|		 +-----------+	 |
+|										|	history 				|										 |
+|										|	XMLHttpRequest 	|										 |
+|										+-----------------+										 |
+|																													 |
++----------------------------------------------------------+
+
++-------------------------------------------------------------+
+|		Классы, иерархия DOM 																			|
++-------------------------------------------------------------+
+|												 +--------+														|
+|				 +---------------|	Node  |----------------+					|
+|				 |							 +--------+								 |					|
+|		+--------+								|      					+---------+			|
+|		|	 Text  |								|		  					| Comment |			|
+|		+--------+					 +---------+	  			+---------+			|
+|												 | Element |\      										|
+|												 +---------+ --------------+					|
+|															|				 						 |					|
+|											 +-------------+			 +-------------+	|
+|											 | HTMLElement |			 |  SVGElement |	|
+|											 +-------------+			 +-------------+	|
+|															|																|
+|						+-----------------+-----------------+							|
+|						|									|									|							|
+|	+------------------+-----------------+-------------------+	|
+|	| HTMLInputElement | HTMLBodyElement | HTMLAnchorElement |	|
+|	+------------------+-----------------+-------------------+	|
++-------------------------------------------------------------+
+
+DOM - (Document Object Model — «объектная модель документа») это не зависящий от платформы и 
+	языка программный интерфейс, позволяющий программам и скриптам получить доступ к содержимому 
+	HTML-, XHTML- и XML-документов... На текущей момент 2016г готовится (DOM 4 level).
+BOM – это объекты для работы с чем угодно, кроме документа.
+	<script>
+
+//Глобальный объект window -------------------------------------------------------------------------
+	window.open('http://ya.ru'); //открыть новую вкладку с указанным адресом
+//Объектная модель браузера (BOM) ------------------------------------------------------------------
+	alert( location.href ); // выведет текущий адрес
+
+	</script>
+
+
+<!-- Объектная модель документа (DOM) -->
+!Таблицы всегда содержат <tbody>. Важно знать об этом, иначе при работе с таблицами возможны сюрпризы.
+!DOM нужен для того, чтобы манипулировать страницей – читать информацию из HTML, создавать и изменять элементы.
+
+Всего различают 12 типов узлов, но на практике мы работаем с четырьмя из них:
+	Документ – точка входа в DOM.
+	Элементы – основные строительные блоки.
+	Текстовые узлы – содержат, собственно, текст.
+	Комментарии – иногда в них можно включить информацию, которая не будет показана, но доступна из JS
+
+
+
+### Навигация ###
+	Первый этап:
+		document.documentElement - получить html узел. Первая точка входа.
+		document.head - получить head. Первая точка входа.
+		document.body - получить body. Вторая точка входа.
+
+	Второй этап:
+		childNodes - (Псевдо-массив)хранит все дочерние элементы, включая текстовые.
+		children - только дочерние узлы-элементы, то есть соответствующие тегам.
+		parentNode - доступ к родителю
+		parentElement – родитель-элемент.
+
+		firstElementChild - первый дочерний эелемент
+		lastElementChild - последний дочерний эелемент
+
+		previousElementSibling - предыдущий эелемент
+		nextElementSibling - следующий эелемент
+
+		firstChild - обеспечивают быстрый доступ к первому элементу
+		lastChild - обеспечивают быстрый доступ к последнему элементу
+
+		previousSibling - доступ к эелементу слева
+		nextSibling - доступ к эелементу справа
+
+		document.body.lastElementChild
+
+	Примерно выглядит так:
+			document.documentElement.children[0]
+
+### Работа с таблицей ###
+	TABLE
+
+
+		table.rows – коллекция строк TR таблицы
+		table.caption – ссылка на элемент таблицы CAPTION.
+		table.tHead – ссылка на элемент таблицы THEAD.
+		table.tFoot – ссылка на элемент таблицы TFOOT.
+		table.tBodies – коллекция элементов таблицы TBODY, по спецификации их может быть несколько.
+
+	THEAD/TFOOT/TBODY
+		tr.cells – коллекция ячеек TD/TH
+		tr.sectionRowIndex – номер строки в текущей секции THEAD/TBODY
+		tr.rowIndex – номер строки в таблице
+
+	TD/TH
+		td.cellIndex – номер ячейки в строке
+
+### Поиск эелементов ###
+	!95% ситуаций достаточно querySelector/querySelectorAll. Хотя более специализированные 
+		методы getElement* работают чуть быстрее, но разница в миллисекунду-другую редко играет роль.
+
+	+---------------------------------------------------------------+
+	|								#Оновные методы поиска по DOM#									|
+	+---------------------------------------------------------------+
+	|	Метод	Ищет по...				Ищет внутри элемента?			Поддержка		|
+	+---------------------------------------------------------------+	
+	|	getElementById					id						-						везде				|
+	|	getElementsByName				name					-						везде				|
+	|	getElementsByTagName		тег или '*'		✔						везде				|
+	|	getElementsByClassName	классу				✔						кроме IE8-	|
+	|	querySelector						CSS-селектор	✔						везде				|
+	|	querySelectorAll				CSS-селектор	✔						везде				|
+	+---------------------------------------------------------------+	
+
+	> Метод elem.getElementById(id) возвращает ссылку на элемент по его идентификатору (ID);
+
+	> Вызов document.getElementsByName(name) позволяет получить все элементы с данным атрибутом name.
+
+	> Метод elem.getElementsByTagName(tag) ищет все элементы с заданным тегом tag внутри элемента 
+		elem и возвращает их в виде списка. Буква "s" не нужна там, где элемент только один, то 
+		есть в getElementById, в остальных методах она обязательна. Может быть вызыван и в 
+		контексте определённого эелемента.
+
+	> Вызов elem.getElementsByClassName(className) возвращает коллекцию элементов с классом className. 
+		Находит элемент и в том случае, если у него несколько классов, а искомый – один из них. кроме IE8-.
+		Может быть вызыван и в контексте определённого эелемента.
+
+	> Вызов elem.querySelector(css) возвращает не все, а только первый элемент, соответствующий 
+			CSS-селектору css. Иначе говоря, результат – такой же, как и при elem.querySelectorAll(css)[0], 
+			но в последнем вызове сначала ищутся все элементы, а потом берётся первый, 
+			а в elem.querySelector(css) ищется только первый, то есть он эффективнее.
+	
+	> Вызов elem.querySelectorAll(css) возвращает все элементы внутри elem, удовлетворяющие 
+		CSS-селектору css. Псевдо-классы в CSS-селекторе, в частности :hover и :active, 
+		также поддерживаются. Один из самых используемых методов при работе с DOM. Есть везде включая IE8+.
+
+
+	> Метод elem.closest(css) ищет ближайший элемент выше по иерархии DOM, подходящий под 
+		CSS-селектор css. Сам элемент тоже включается в поиск. Используется редко.
+
+	> Метод elem.matches(css) ничего не ищет, а проверяет, удовлетворяет ли elem селектору css. 
+		Он возвращает true либо false. Не поддерживается в IE8-. Старое название matchesSelector, 
+		возможно некоторые браузеры поддерживают с префиксами.
+
+	> XPath - язык запросов. Так как XPath сложнее и длиннее CSS, то используют его очень редко.
+
+<script>
+
+		//показать первый эелемент в выбранной вкладке в коносоли --------------------------------------
+			console.log($0);
+
+		//задать красный цвет первому эелементу---------------------------------------------------------
+			$0.style.backgroundColor = 'red';
+		
+		//вывести все div-ки ---------------------------------------------------------------------------
+			console.log($$("div"));
+		
+		//задать стиль, цвет фона body -----------------------------------------------------------------
+			document.body.style.background = 'red'; //зделать body красным
+			document.body.style.background = ''; //зделать body бесцветным(стандартым)
+
+		//Псевдо-массив childNodes. Последовательно вывести дочерние элементы body ---------------------
+	    for (var i = 0; i < document.body.childNodes.length; i++) {
+	      alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
+	    }
+
+    //Как к псевдо-массиву childNodes применить методы массива--------------------------------------
+    	
+    	//Сопосб 1. Применить метод массива через call/apply-----------------------------------------+
+			var elems = document.documentElement.childNodes;
+
+			[].forEach.call(elems, function(elem) {
+			  alert( elem ); // HEAD, текст, BODY
+			});
+
+			//Способ 2. При помощи Array.prototype.slice сделать из коллекции массив. -------------------+
+			var elems = document.documentElement.childNodes;
+			elems = Array.prototype.slice.call(elems); // теперь elems - массив
+
+			elems.forEach(function(elem) {
+			  alert( elem.tagName ); // HEAD, текст, BODY
+			});
+
+    //свойства firstChild и lastChild --------------------------------------------------------------
+			var elem = document.documentElement;
+	    elem.childNodes[0] === elem.firstChild //true
+			elem.childNodes[elem.childNodes.length - 1] === elem.lastChild //true
+
+		//children -------------------------------------------------------------------------------------
+			var elem = document.documentElement;
+			elem.firstElementChild === elem.children[0] //true
+			elem.lastElementChild === elem.children[elem.children.length - 1] //true
+
+		//перебор с помощью children--------------------------------------------------------------------
+	    /*в IE8- в узлах присутствую коментарьи, могут возникнуть сложности.*/ 
+	    for (var i = 0; i < document.body.children.length; i++) {
+	      alert( document.body.children[i] ); // DIV, UL, DIV, SCRIPT
+	    }
+
+	  //Работа с таблицей ----------------------------------------------------------------------------
+			//Пример использования
+			/*
+				<table>
+				  <tr>
+				    <td>один</td> <td>два</td>
+				  </tr>
+				  <tr>
+				    <td>три</td>  <td>четыре</td>
+				  </tr>
+				</table>
+			*/
+			var table = document.body.children[0];
+			alert( table.rows[0].cells[0].innerHTML ) // "один"
+		
+		//z. Покрасить ячейки таблицы по диоганали -----------------------------------------------------
+			/*
+		  <table>
+		    <tr>
+		      <td>1:1</td>
+		      <td>2:1</td>
+		      <td>3:1</td>
+		      <td>4:1</td>
+		      <td>5:1</td>
+		    </tr>
+		    <tr>
+		      <td>1:2</td>
+		      <td>2:2</td>
+		      <td>3:2</td>
+		      <td>4:2</td>
+		      <td>5:2</td>
+		    </tr>
+		    <tr>
+		      <td>1:3</td>
+		      <td>2:3</td>
+		      <td>3:3</td>
+		      <td>4:3</td>
+		      <td>5:3</td>
+		    </tr>
+		    <tr>
+		      <td>1:4</td>
+		      <td>2:4</td>
+		      <td>3:4</td>
+		      <td>4:4</td>
+		      <td>5:4</td>
+		    </tr>
+		    <tr>
+		      <td>1:5</td>
+		      <td>2:5</td>
+		      <td>3:5</td>
+		      <td>4:5</td>
+		      <td>5:5</td>
+		    </tr>
+		  </table>
+			*/
+		
+	  	//Получить таблицу
+	  	var table = document.body.children[0];
+	  	//где table.rows.length это количество строк в таблице, т.е.=5
+	   	for (var i=0; i<table.rows.length; i++) {
+	   		table.rows[i].cells[i].style.backgroundColor = 'green';
+	   	}
+	   	
+		//z. Проверка существования деталей ------------------------------------------------------------
+			
+			//способ 1. Через свойство length -----------------------------------------------------------+
+				if (!elem.childNodes.length) { ... }
+				//или он же в другом виде
+				document.documentElement.childNodes.length != 0
+			
+			//способ 2. Через метод hasChildNodes() -----------------------------------------------------+
+				document.documentElement.hasChildNodes()
+
+		//Работа с элементами ==========================================================================
+
+			//getElementById ----------------------------------------------------------------------------+
+			document.getElementById('content'); //поиск по id 
+			
+			//getElementByTagName и getElementsByTagName (см разницу s) ---------------------------------+
+			document.getElementsByTagName('div'); //массив из выбранного тега можно искать внутри любова
+			document.getElementsByTagName('*');// получить все элементы документа
+			elem.getElementsByTagName('*');// получить всех потомков элемента elem:
+			document.getElementsByTagName('input')[0].value = 5; //присваивание значение эелементу
+
+			//getElementsByName, Используется этот метод весьма редко.-----------------------------------+
+			document.getElementsByName('age'); //все элементы с именем age
+			
+			//querySelectorAll---------------------------------------------------------------------------+
+			document.querySelectorAll('ul > li:last-child'); //все элементы LI, последние потомками в UL
+			document.querySelectorAll(':hover'); //вложенный список из текущих элементов под курсором
+
+			//querySelector -----------------------------------------------------------------------------+
+			document.querySelector(".myclass"); //первый элемент с классом "myclass"
+			
+			//matches -----------------------------------------------------------------------------------+
+			var elems = document.body.children;
+			for (var i = 0; i < elems.length; i++) {
+				if (elems[i].matches('a[href$="zip"]')) { //соответствует ли ссылка zip или нет
+					...} 
+			}
+
+			//Пример, поиск по id, старый способ ---------------------------------------------------------
+				/*
+				<div id="content-holder">
+				  <div id="content">Элемент</div>
+				</div>	
+				*/
+			
+				/*устарело*/ console.log(content); //<div id="content-holder">
+				/*устарело*/ console.log(window['content-holder']); //<div id="content">
+
+			//Пример, getElementById+getElementsByTagName Поиск элементов внутри таблицы -----------------
+				/*
+					<table id="age-table">
+					  <tr>
+					    <td>Ваш возраст:</td>
+
+					    <td>
+					      <label>
+					        <input type="radio" name="age" value="young" checked> младше 18
+					      </label>
+					      <label>
+					        <input type="radio" name="age" value="mature"> от 18 до 50
+					      </label>
+					      <label>
+					        <input type="radio" name="age" value="senior"> старше 60
+					      </label>
+					    </td>
+					  </tr>
+
+					</table>
+				*/
+		
+			  var tableElem = document.getElementById('age-table');
+			  var elements = tableElem.getElementsByTagName('input');
+
+			  for (var i = 0; i < elements.length; i++) {
+			    var input = elements[i];
+			    alert( input.value + ': ' + input.checked );
+			  }
+
+			//Пример, getElementsByName, кроме IE8-. -----------------------------------------------------
+				/*
+					<div class="article">Статья</div>
+					<div class="long article">Длинная статья</div>
+				*/
+				var articles = document.getElementsByClassName('article');
+				alert( articles.length ); // 2, найдёт оба элемента
+
+			//Пример, querySelectorAll, Есть везде включая IE8+. -----------------------------------------
+				/*
+					<ul>
+					  <li>Этот</li>
+					  <li>тест</li>
+					</ul>
+					<ul>
+					  <li>полностью</li>
+					  <li>пройден</li>
+					</ul>
+				*/
+			  var elements = document.querySelectorAll('ul > li:last-child');
+
+			  for (var i = 0; i < elements.length; i++) {
+			    alert( elements[i].innerHTML ); // "тест", "пройден"
+			  }
+		
+			//Пример, closest ----------------------------------------------------------------------------
+				/*
+					<ul>
+					  <li class="chapter">Глава I
+					    <ul>
+					      <li class="subchapter">Глава <span class="num">1.1</span></li>
+					      <li class="subchapter">Глава <span class="num">1.2</span></li>
+					    </ul>
+					  </li>
+					</ul>
+				*/
+
+			  var numberSpan = document.querySelector('.num');
+
+			  // ближайший элемент сверху подходящий под селектор li
+			  alert(numberSpan.closest('li').className) // subchapter
+
+			  // ближайший элемент сверху подходящий под селектор .chapter
+			  alert(numberSpan.closest('.chapter').tagName) // LI
+
+			  // ближайший элемент сверху, подходящий под селектор span
+			  // это сам numberSpan, так как поиск включает в себя сам элемент
+			  alert(numberSpan.closest('span') === numberSpan) // true
+
+			//Пример xPeapx ------------------------------------------------------------------------------
+				//Найдем заголовки <h2> с текстом XPath в текущем документе
+				var result = document.evaluate("//h2[contains(., 'XPath')]", document.documentElement, null,
+				  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+
+				for (var i = 0; i < result.snapshotLength; i++) {
+				  alert( result.snapshotItem(i).outerHTML );
+				}
+
+			//Выбор второго элемента --------------------------------------------------------------------
+				/*
+				<ul>
+				  <li>...</li>
+				  <li>...</li> <!-- нужно выбрать этот -->
+				  <li>...</li>
+				  ...
+				</ul>
+				*/
+			
+				//1 способ
+				var li = ul.getElementsByTagName('li')[1];
+				//2 способ
+				var li = ul.querySelector('li:nth-child(2)');
+				//3 способ, он дольше при больших списках, т.к. перебирает все эелементы
+				var li = ul.querySelectorAll('li')[1];
+
+			//Разбор адресной строки --------------------------------------------------------------------
+		    var url = location;//document.getElementsByTagName('a')[0];
+
+		    console.log(
+		    url.href + '\n' +           // the full URL
+		    url.protocol + '\n' +       // http:
+		    url.hostname + '\n' +       // site.com
+		    url.port + '\n' +           // 81
+		    url.pathname + '\n' +       // /path/page
+		    url.search + '\n' +         // ?a=1&b=2
+		    url.hash                    // #hash
+		    );	
+</script>
+
+<!-- Узлы -->
+-Содержание-
+	Класс узла можно узнать следующими способами
+	childNodes. Вывести все узлы doby
+	innerHTML
+	Свойство outerHTML: элементы целиком
+	nodeValue/data: содержимое текстового узла
+	Текст: textContent
+	Свойство hidden
+	Атрибуты элемента
+
+
+
+!Название HTML-тега всегда находится в верхнем регистреб исключения редко могут быть в XHTML.
+!Изменить outerHTML элемента невозможно, он только заменяет эелемент.
+!Содержимое других узлов, например, текстовых или комментариев, доступно на чтение и запись через свойство data.
+Свойство nodeName и tagName, содержат название(тег) элемента узла. При помощи tagName мы можем работать только с элементами, а nodeName может что-то сказать и о других типах узлов.При работе с элементами, как это обычно бывает, имеет смысл использовать свойство tagName – оно короче.
+!Свойство hidden используют для защиты ввода пользовательских данных.
+
+
+Все свойства DOM-объекта document
+	console.dir(document);
+
+Название/тег узла 
+	document.body.nodeName  // "nodeName" работа с узлами и элементами. Только чтение.
+	document.body.tagName  // "tagName" работа с элементами. Только чтение.
+
+Содержимое элемента
+	document.body.childNodes[i].nodeType // "nodeType" тип узла. Самые популярные типы: 
+		"1" – для элементов и 
+		"3" – для текстовых узлов. Только для чтения.
+	document.body.innerHTML = '<b>тест</b>' // "innerHTML" изменяет содержимое элемента
+	document.body.children[i].outerHTML // "outerHTML" заменяет html элемент целиком
+	document.body.childNodes[i].data // "data" также исп "nodeValue", оба представляют содержимое текстового узла
+	document.body.children[i].textContent // "textContent" содержит только текст внутри элемента. кроме IE8-.
+	document.body.children[i].hidden=true // "hidden" позволяет скрыть элемент
+	document.body.children[i].type/id/value // "type/id/value ..." получение атрибутов элемента к прим у <imput>.
+
+	<script>
+
+	//Класс узла можно узнать следующими способами -------------------------------------------------+
+
+		// 1 способ. Привести к строке
+		alert( document.body ); 
+
+		// 2 способ. Проверить с помощью instanceof
+		alert( document.body instanceof HTMLBodyElement ); // true
+		alert( document.body instanceof HTMLElement ); // true
+		alert( document.body instanceof Element ); // true
+		alert( document.body instanceof Node ); // true
+
+	//childNodes. Вывести все узлы doby ------------------------------------------------------------+
+    var childNodes = document.body.childNodes;
+    for (var i = 0; i < childNodes.length; i++) {
+      // отфильтровать не-элементы
+      if (childNodes[i].nodeType != 1) continue;
+      console.log( childNodes[i] );
+    }
+
+  //innerHTML ------------------------------------------------------------------------------------+
+		document.body.innerHTML = '<b>тест'; // незакрытый тег
+    alert( document.body.innerHTML ); // <b>тест</b> (исправлено)
+
+  //Свойство outerHTML: элементы целиком ---------------------------------------------------------+
+    //<div>Привет <b>Мир</b></div>
+		var div = document.body.children[0];
+  	alert( div.outerHTML ); // <div>Привет <b>Мир</b></div>
+
+	//nodeValue/data: содержимое текстового узла ---------------------------------------------------+
+		/*
+		<body>
+	  Привет
+	  <!-- Комментарий -->
+		...
+		*/
+		document.body.childNodes[1].data; //" Комментарий "
+
+	//Текст: textContent ---------------------------------------------------------------------------+
+		
+		/* Пример 1 --------------------------------+
+		<div>
+		  <h1>Срочно в номер!</h1>
+		  <p>Марсиане атакуют людей!</p>
+		</div>
+		 */
+		var news = document.body.children[0];
+	  alert( news.textContent ); // \n  Срочно в номер!\n  Марсиане атакуют людей!\n
+
+
+	  /* Пример 2 --------------------------------+
+	  <div></div>
+		<div></div>
+		*/
+		var name = prompt("Введите имя?", "<b>Винни-пух</b>");
+  	document.body.children[0].innerHTML = name; //Винни-пух //жирным текстом
+  	document.body.children[1].textContent = name; //<b>Винни-пух</b>
+
+  //Свойство hidden ------------------------------------------------------------------------------+
+		/*<div>Текст</div> 											//отоброзится
+		<div hidden>С атрибутом hidden</div>		//не отоброзится
+		<div>Со свойством hidden</div>					//не отоброзится*/	
+
+	  var lastDiv = document.body.children[2];
+	  lastDiv.hidden = true;
+
+	//Атрибуты элемента ----------------------------------------------------------------------------+
+		/*<input type="text" id="elem" value="значение">*/
+
+		var input = document.body.children[0];
+	  alert( input.type ); // "text"
+	  alert( input.id ); // "elem"
+	  alert( input.value ); // значение
+
+	</script>
+
+<!-- Полифилы -->
+	<!-- 
+	<li> – HTMLLiElement
+	<a> – HTMLAnchorElement
+	<body> – HTMLBodyElement
+	 -->
+
+
+Полифилл (англ. polyfill) – это библиотека, которая добавляет в старые браузеры поддержку возможностей, которые в современных браузерах являются встроенными.
+
+!при роверке DOM-свойства, если undefined значит не поддерживает, если null, значит поддерживает но нет дочерних элементов. Ввжно то что элемент по стандарту должен поддерживать свойство, т.е. у div не будет свойства value как у инпута.
+	<script>
+
+	//полифил, добавление в DOM поддержку firstElementChild, для  IE8 ------------------------------+
+		if (document.documentElement.firstElementChild === undefined) { // (1)
+
+		  Object.defineProperty(Element.prototype, 'firstElementChild', { // (2)
+		    get: function() {
+		      var el = this.firstChild;
+		      do {
+		        if (el.nodeType === 1) {
+		          return el;
+		        }
+		        el = el.nextSibling;
+		      } while (el);
+
+		      return null;
+		    }
+		  });
+		}
+	
+	//Проверка типа атрибута -----------------------------------------------------------------------+
+		/*
+			<input type="radio">
+			<input type="no-such-type">
+		*/
+	  alert( document.body.children[0].type ); // radio, поддерживается
+	  alert( document.body.children[1].type ); // text, не поддерживается
+
+	//Пример добавления функции всем элементам -----------------------------------------------------+
+		Element.prototype.sayHi = function() {
+		  alert( "Привет от " + this );
+		}
+		document.body.sayHi(); // Привет от [object HTMLBodyElement]
+
+	//Пример добавления свойства всем элементам ----------------------------------------------------+
+		Object.defineProperty(Element.prototype, 'lowerTag', {
+		  get: function() {
+		    return this.tagName.toLowerCase();
+		  }
+		});
+		alert( document.body.lowerTag ); // body
+		
+	</script>
+</body>
+</html>
+
+<!-- Атрибуты и DOM-свойства -->
+!Узел DOM – это объект, поэтому, как и любой объект в JavaScript, он может содержать пользовательские свойства и методы.
+!если мы хотим именно то, что в HTML, то нужно обращаться через атрибут.
+!Чаще синхронизация – односторонняя: свойство зависит от атрибута, но не наоборот(бывают редкие исключения).
+!Свойство classList атрибута class – это объект для работы с классами.
+!чтобы изменить состояние html элемента из js удобнее манипулировать атрибутами нежели чем классами для css
+!Работая с hidden под браузеры IE8- нужно работать со свойствами атрибутов, а не с самими атрибутами, когда это возможно.
+
+!Для проверки, является ли один узел предком другого, достаточно метода nodeA.contains(nodeB).Для расширенной проверки на предшествование есть метод compareDocumentPosition.Для IE8 нужен полифилл для compareDocumentPosition.
+
++---------------------+
+| атрибут | свойство  |
++---------------------+
+| class		| className	|
+| for			| htmlFor		|
++---------------------+
+Доступ к атрибутам стандартными методами
+	elem.hasAttribute(name) – проверяет наличие атрибута
+	elem.getAttribute(name) – получает значение атрибута
+	elem.setAttribute(name, value) – устанавливает атрибут
+	elem.removeAttribute(name) – удаляет атрибут
+Методы classList:
+	elem.classList.contains("class") – возвращает true/false, в зависимости от того, есть ли у элемента класс class.
+	elem.classList.add/remove("class") – добавляет/удаляет класс class
+	elem.classList.toggle("class") – если класса class нет, добавляет его, если есть – удаляет.
+	<script>
+
+	// Демонстрация установки атрибута ---------------------------------------------------------------
+		/*
+			<body>
+	  		<div id="elem" about="Elephant"></div>
+	  		...наш скрипт...
+	  	</body>  
+	  */
+ 
+  	alert( elem.getAttribute('About') ); // (1) 'Elephant', атрибут получен
+    elem.setAttribute('Test', 123); // (2) атрибут Test установлен
+    alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
+    var attrs = elem.attributes; // (4) можно получить коллекцию атрибутов
+    for (var i = 0; i < attrs.length; i++) {
+      alert( attrs[i].name + " = " + attrs[i].value );
+    }
+
+  // Демонстрация работы через атрибуты и свойства, их различия ------------------------------------
+		/*<input id="input" type="checkbox" checked>*/
+
+	  // работа с checked через атрибут
+	  alert( input.getAttribute('checked') ); // пустая строка
+	  input.removeAttribute('checked'); // снять галочку
+
+	  // работа с checked через свойство
+	  alert( input.checked ); // false <-- может быть только true/false
+	  input.checked = true; // поставить галочку
+
+	// Свойство classList ----------------------------------------------------------------------------
+		/*
+			<body class="main page">
+			наш скрипт
+			</body>
+		*/
+
+    var classList = document.body.classList;
+
+    classList.remove('page'); // удалить класс
+    classList.add('post'); // добавить класс
+
+    for (var i = 0; i < classList.length; i++) { // перечислить классы
+      alert( classList[i] ); // main, затем post
+    }
+
+    alert( classList.contains('post') ); // проверить наличие класса
+
+    alert( document.body.className ); // main post, тоже работает
+
+  // Использования атрибутов вместо классов CSS. Рекомендуется пользоватся атрибутами --------------
+	  /*
+		<style>
+		  .order[order-state="new"] {
+		    color: green;
+		  }
+
+		  .order[order-state="pending"] {
+		    color: blue;
+		  }
+
+		  .order[order-state="canceled"] {
+		    color: red;
+		  }
+		</style>
+
+		<div class="order" order-state="new">
+		  Новый заказ.
+		</div>
+
+		<div class="order" order-state="pending">
+		  Ожидающий заказ.
+		</div>
+
+		<div class="order" order-state="canceled">
+		  Заказ отменён.
+		</div>
+		*/
+
+		//отменить заказ с помощь JS
+		div.setAttribute('order-state', 'canceled');
+
+		//а для класса нужно узнать текущий и только потом отменять
+		div.classList.remove('order-state-new');
+		div.classList.add('order-state-canceled');
+
+	// Атрибуты data-* и обращения к атрибутам -------------------------------------------------------
+		
+		/* 
+		<div id="elem" data-about="Elephant" data-user-location="street">
+		  По улице прошёлся слон. Весьма красив и толст был он.
+		</div> 
+		*/
+
+		//обращение к атрибуту напрямую
+	  alert( elem.getAttribute('data-about') ); // Elephant
+	  alert( elem.getAttribute('data-user-location') ); // street
+	  //обращения по свойствам, кроме IE10-
+  	alert( elem.dataset.about ); // Elephant
+  	alert( elem.dataset.userLocation ); // street
+
+  //z. Получить эелемент. Обращение к атрибуту. ----------------------------------------------------
+		/*
+		<div id="widget" data-widget-name="menu">Выберите жанр</div>
+		*/
+	
+		var div = document.getElementById('widget');
+
+    var widgetName = div.getAttribute('data-widget-name');
+    // или так, кроме IE10-
+    var widgetName = div.dataset.widgetName;
+
+    alert( widgetName ); // "menu"
+
+  //z. Поставить класс некоторым ссылкам. ----------------------------------------------------------
+	  /* Внешние должны быть жёлтые а внутренние без класса
+	  <style>
+	  .external {
+	    background-color: yellow
+	  }
+		</style>
+
+		<a name="list">список</a>
+		<ul>
+		  <li><a href="http://google.com">http://google.com</a></li>  <!-- Это внешнаяя -->
+		  <li><a href="/tutorial">/tutorial.html</a></li>	<!-- Это внутреняя -->
+		  <li><a href="local/path">local/path</a></li>
+		  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+		  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+		  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+		</ul>
+	  */
+	 
+	  //Способ 1.
+			var links = document.querySelectorAll('a');
+			for (var i = 0; i < links.length; i++) {
+			  var a = links[i];
+			  var href = a.getAttribute('href');
+			  if (!href) continue; // нет атрибута
+			  if (href.indexOf('://') == -1) continue; // без протокола
+			  if (href.indexOf('http://internal.com') === 0) continue; // внутренняя
+			  a.classList.add('external');
+			}
+		//Способ 2.
+			/* ищем все ссылки, у которых в href есть протокол,
+			но адрес начинается не с http://internal.com */
+			var css = 'a[href*="://"]:not([href^="http://internal.com"])';
+			var links = document.querySelectorAll(css);
+
+			for (var i = 0; i < links.length; i++) {
+			  links[i].classList.add('external');
+			}
+	
+	// Метод contains для проверки на вложенность ----------------------------------------------------
+		var result = parent.contains(child);
+		//возвращает true или false
+
+	// Метод compareDocumentPosition для порядка узлов -----------------------------------------------
+		var result = nodeA.compareDocumentPosition(nodeB); //см в инт таблицу по этому методу
+
+		//пример 1.
+			/*
+			<p>...</p>
+			<ul>
+			  <li>1.1</li>
+			</ul>
+			*/
+
+		  var p = document.body.children[0];
+		  var ul = document.body.children[1];
+		  var li = ul.children[0];
+
+		  // 1. <ul> находится после <p>
+		  alert( ul.compareDocumentPosition(p) ); // 2 = 10
+
+		  // 2. <p> находится до <ul>
+		  alert( p.compareDocumentPosition(ul) ); // 4 = 100
+
+		  // 3. <ul> родитель <li>
+		  alert( ul.compareDocumentPosition(li) ); // 20 = 10100
+
+		  // 4. <ul> потомок <body>
+		  alert( ul.compareDocumentPosition(document.body) ); // 10 = 1010
+
+		//Пример 2. Проверить конкретное условие
+			/*
+			<ul>
+			  <li>1</li>
+			</ul>
+			*/
+
+		  var body = document.body;
+		  var li = document.body.children[0].children[0];
+
+		  if (body.compareDocumentPosition(li) & 16) {
+		    alert( body + ' содержит ' + li );
+		  }
+
+### Добавление удаление изменение узлов DOM ###
+		 
+	Методы для создания узлов:
+		document.createElement(tag) – создает элемент //return elem
+		document.createTextNode(value) – создает текстовый узел //return elem
+		elem.cloneNode(deep) – клонирует элемент, если deep == true, то со всеми потомками, 
+			если false – без потомков. //return elem
+
+	Вставка и удаление узлов:
+		parent.appendChild(elem) //return elem
+		parent.insertBefore(elem, nextSibling) //return elem
+		parent.removeChild(elem) //return elem
+		parent.replaceChild(newElem, elem) //return elem
+
+
+	// Создание элемента и добавление ему класса, но пока ещё не видимый в DOM -----------------------
+		var div = document.createElement('div');
+		div.className = "alert alert-success";
+		div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+	// Добавление элементов --------------------------------------------------------------------------
+		/* parentElem.insertBefore(elem, null); РАВЕН parentElem.appendChild(elem)
+		/*
+		<ol id="list">
+		  <li>0</li>
+		  <li>1</li>
+		  <li>2</li>
+		</ol>
+		*/
+
+	  var newLi = document.createElement('li');
+	  newLi.innerHTML = 'Привет, мир!';
+
+	  list.appendChild(newLi);
+	  //list.insertBefore(newLi, list.children[1]); // вставить li перед вторым элементом
+	  //list.insertBefore(newLi, list.firstChild); //вставить li перед первым элементом
+
+	// Полноценный пример ----------------------------------------------------------------------------
+		/* 
+		<style>
+			.alert {
+			  padding: 15px;
+			  border: 1px solid #d6e9c6;
+			  border-radius: 4px;
+			  color: #3c763d;
+			  background-color: #dff0d8;
+			}
+		</style>
+
+		<body>
+		  <h3>Моя страница</h3>
+		</body>
+
+		*/
+	  var div = document.createElement('div');
+	  div.className = "alert alert-success";
+	  div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+	  document.body.appendChild(div);
+
+	// Полноценный пример с клонированием элемента ---------------------------------------------------
+		/*
+		<style>
+		.alert {
+		  padding: 15px;
+		  border: 1px solid #d6e9c6;
+		  border-radius: 4px;
+		  color: #3c763d;
+		  background-color: #dff0d8;
+		}
+		</style>
+
+		<body>
+		  <h3>Моя страница</h3>
+		</body>
+
+		<script>
+		*/
+
+	  var div = document.createElement('div');
+	  div.className = "alert alert-success";
+	  div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+	  document.body.insertBefore(div, document.body.firstChild);
+
+	  // создать копию узла
+	  var div2 = div.cloneNode(true);
+	  // копию можно подправить
+	  div2.querySelector('strong').innerHTML = 'Супер!';
+	  // вставим её после текущего сообщения
+	  div.parentNode.insertBefore(div2, div.nextSibling);
+
+	// Удаление элемента -----------------------------------------------------------------------------
+		/*
+		<style>
+		.alert {
+		  padding: 15px;
+		  border: 1px solid #d6e9c6;
+		  border-radius: 4px;
+		  color: #3c763d;
+		  background-color: #dff0d8;
+		}
+		</style>
+
+		<body>
+		  <h3>Сообщение пропадёт через секунду</h3>
+		</body>
+		*/
+	
+	  var div = document.createElement('div');
+	  div.className = "alert alert-success";
+	  div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+	  document.body.appendChild(div);
+
+	  setTimeout(function() {
+	    div.parentNode.removeChild(div);
+	  }, 1000);
+
+	// Текстовые узлы для вставки текста -------------------------------------------------------------
+		/*
+		<style>
+		.alert {
+		  padding: 15px;
+		  border: 1px solid #d6e9c6;
+		  border-radius: 4px;
+		  color: #3c763d;
+		  background-color: #dff0d8;
+		}
+		</style>
+		*/
+	
+	  var div = document.createElement('div');
+	  div.className = "alert alert-success";
+	  document.body.appendChild(div);
+
+	  var text = prompt("Введите текст для сообщения", "Жили были <a> и <b>!");
+
+	  // вставится именно как текст, без HTML-обработки // в IE8- исп textContent
+	  div.appendChild(document.createTextNode(text));
+
+	</script>
+
+### Мультивставка, работа с узлами ###
+ 	!Если нужно сделать много узлов, то обычно innerHTML работает быстрее, чем удаление и вставка элементов через DOM-вызовы. То есть, сгенерировать таблицу заново эффективнее.
+
+	# Семейство методов для вставки HTML/элемента/текста в произвольное место документа:
+	elem.insertAdjacentHTML(where, html)	
+	elem.insertAdjacentElement(where, node)		
+	elem.insertAdjacentText(where, text)		
+	+---------------------------------------------------------+
+	|	Вставка HTML/элемента/текста методом insertAdjacent		 	|	+---------------------------------------------------------+
+	|				 				beforeBegin  beforeEnd						 				|
+	|					   				 |		 		 |							 						|
+	|	<li>предыдущий</li> <li> elem </li> <li>следеющий</li>	|
+	|													|		   	   |					 					|
+	|											afterBegin	 afterEnd				 				|
+	+---------------------------------------------------------+
+
+	# Методы для вставки что угодно и куда угодно. Работают с любым количеством узлов/текстов
+	(где node это теги)
+	node.append(...nodes) – вставляет nodes в конец node,
+	node.prepend(...nodes) – вставляет nodes в начало node,
+	node.after(...nodes) – вставляет nodes после узла node,
+	node.before(...nodes) – вставляет nodes перед узлом node,
+	node.replaceWith(...nodes) – вставляет nodes вместо node.
+
+	# Работа с коллекцией узлов
+	var fragment = document.createDocumentFragment();
+
+	<script>
+
+	// Процедура вставки элемента в документ ------------------------------------------------------+
+		var ul = document.createElement('ul');
+		for(...) ul.appendChild(li);   // сначала вставить узлы
+		document.body.appendChild(ul); // затем в документ
+
+	// Вставка элемента методом insertAdjacent* ---------------------------------------------------+
+		/*
+		<ul>
+		  <li>1</li>
+		  <li>2</li>
+		  <li>5</li>
+		</ul>
+		*/
+
+	  var ul = document.body.children[0];
+	  var li5 = ul.children[2];
+	  li5.insertAdjacentHTML("beforeBegin", "<li>3</li><li>4</li>");
+
+	// DocumentFragment (псевдокод) ---------------------------------------------------------------+
+		// хотим вставить в список UL много LI
+		// делаем вспомогательный DocumentFragment
+		var fragment = document.createDocumentFragment();
+		for (цикл по li) {
+		  fragment.appendChild(list[i]); // вставить каждый LI в DocumentFragment
+		}
+		ul.appendChild(fragment); // вместо фрагмента вставятся элементы списка
+
+
+	// append/prepend, before/after, replaceWith (пример с полифилом) -----------------------------+
+		/* <script> src="https://cdn.polyfill.io/v1/
+		polyfill.js?features=Element.prototype.append,Element.prototype.after"> < / script> */
+
+		// добавим элемент в конец <body>
+	    var p = document.createElement('p');
+	    document.body.append(p);
+
+	    var em = document.createElement('em');
+	    em.append('Мир!');
+
+	    // вставить в параграф текстовый и обычный узлы
+	    p.append("Привет, ", em);
+
+	    // добавить элемент после <p>
+	    p.after(document.createElement('hr'));
+
+	</script>
+
+### Стили, getComputedStyle ###
+	Свойство element.style - возвращает объект, который дает доступ к стилю элемента на чтение и запись.
+	Свойство style.cssText - позволяет поставить стиль целиком в виде строки.
+	Метод window.getComputedStyle - чтобы получить текущее используемое значение свойства.
+		Аналог для IE8- свойство "currentStyle".
+		синтакс: getComputedStyle(element[, pseudo])
+
+	!!Свойство style мы используем лишь там, где не работают классы. В большинстве случаев внешний вид 
+		элементов задаётся классами. А JavaScript добавляет или удаляет их. Такой код красив и гибок, 
+		дизайн можно легко изменять. Свойство style нужно использовать лишь там, где классы не подходят, 
+		например если точное значение цвета/отступа/высоты вычисляется в JavaScript.
+	!!Свойство style.cssText используют, например, для новосозданных элементов, когда старых 
+		стилей точно нет.
+	!Исключения: не "elem.style.float" а "elem.style.cssFloat". Т.к. В старом стандарте JavaScript 
+		слово "float" было зарезервировано и недоступно для использования в качестве свойства объекта.
+	!Чтобы сбросить поставленный стиль, присваивают в style пустую строку: elem.style.width="".
+	!При установке style.cssText все предыдущие свойства style удаляются.
+	!Если нужно заменить какое-то конкретно свойство стиля, то обращаются:style.color, style.width и т.п
+	!Свойство style содержит лишь тот стиль, который указан в атрибуте элемента, без учёта каскада CSS.
+
+	<script>
+	//Назначение элементу ширину в 100px ------------------------------------------------------------+
+		elem.style.width="100px";
+	
+	//Назначение элементу стиля из 2 слов(дефис превращается в заглавную букву след слова) ----------+
+		elem.style.backgroundColor //background-color
+	
+	//Назначения стиля элементу в префиксное свойство -----------------------------------------------+
+		button.style.MozBorderRadius = '5px'; //-moz-border-radius
+	
+	//Стили находятся в формате браузера ------------------------------------------------------------+
+		document.body.style.margin = '20px';
+		alert( document.body.style.marginTop ); // 20px!
+	
+	//Пример 1. Измеенние фона ----------------------------------------------------------------------+
+		document.body.style.backgroundColor = prompt('background color?', 'green');
+	
+	//Пример 2. Назначение и сброс стиля. -----------------------------------------------------------+
+		// если запустить этот код, то <body> "мигнёт"
+		document.body.style.display = "none";
+		setTimeout(function() {
+		  document.body.style.display = "";
+		}, 1000);
+	
+	//Пример 3. Использование style.cssText ---------------------------------------------------------+
+		//<div>Button</div>
+	  var div = document.body.children[0];
+	  div.style.cssText="color: red !important; \
+	    background-color: yellow; \
+	    width: 100px; \
+	    text-align: center; \
+	    blabla: 5; \  
+	  ";
+	  //blabla: 5; будет проигнорированно
+	  alert(div.style.cssText);
+	
+	//Пример 4. Получение применяемых стилей. Испльзование getComputedStyle -------------------------+
+		/*<style>
+		  body {
+		    margin: 10px
+		  }
+		</style>
+		<body>
+		</body>
+		*/
+	  var computedStyle = getComputedStyle(document.body);
+	  alert( computedStyle.marginTop ); // выведет отступ в пикселях
+	  alert( computedStyle.color ); // выведет цвет
+	  alert( document.body.style.marginTop ) //!ничего не выведет, style с атрибута а не каскадов
+	
+	//Пример 5 для IE. currentStyle для IE8- --------------------------------------------------------+
+		/*
+		<style>
+		  body {
+		    margin: 10%
+		  }
+		</style>
+		<body>
+		</body>
+	  */
+	  var elem = document.body;
+
+	  //Кросс браузерная функция, для определения getComputedStyle или currentStyle
+	  function getStyle(elem) {
+	    return window.getComputedStyle ? getComputedStyle(elem, "") : elem.currentStyle;
+	  }
+
+	  var marginTop = getStyle(elem).marginTop;
+	  alert( marginTop ); // IE8-: 10%, иначе пиксели
+
+  // z. Создание div в body и назначения ему стилей -----------------------------------------------+
+    //создаём элемент div
+    var div = document.createElement('div');
+    //добавляем его в body как дочерний элемент
+    document.body.appendChild(div);
+    //добовляем содержимое div
+    div.append("Нажми меня!");
+
+    //создание стилей для div. Способ 1.
+      var s = div.style
+      s.MozBorderRadius = s.WebkitBorderRadius = s.borderRadius = '8px';
+      s.border = '2px groove green';
+      s.display = 'block';
+      s.height = '30px';
+      s.lineHeight = '30px';
+      s.width = '100px';
+      s.textDecoration = 'none';
+      s.textAlign = 'center';
+      s.color = 'red';
+      s.fontWeight = 'bold';
+
+    //создание стилей для div. Способ 2 - удаляются уже существующие.
+    div.style.cssText=" \
+      -moz-border-radius: 8px; \
+      -webkit-border-radius: 8px; \
+      border-radius: 8px; \
+      border: 2px groove green; \
+      display: block; \
+      height: 30px; \
+      line-height: 30px; \
+      width: 100px; \
+      text-decoration: none; \
+      text-align: center; \
+      color: red; \
+      font-weight: bold; \
+      ";
+
+	</script>
+
+### Размеры и прокрутка элементов ###
+	offsetParent – (тольк чтен) родитель по дереву рендеринга.
+	offsetLeft/offsetTop – (тольк чтен) позиция в пикселях левого верхнего угла блока, относительно его offsetParent.
+	offsetWidth/offsetHeight – (тольк чтен) «внешняя» ширина/высота блока, включая рамки.
+	clientLeft/clientTop – (тольк чтен) отступ области содержимого от левого-верхнего угла элемента.
+	clientWidth/clientHeight –(тольк чтен)  ширина/высота содержимого вместе с полями padding, но без полосы прокрутки.
+	scrollWidth/scrollHeight – (тольк чтен) ширина/высота содержимого, включая прокручиваемую область. Включает в себя padding и не включает полосы прокрутки.
+	scrollLeft/scrollTop – (чтен и зап)ширина/высота прокрученной части документа, считается от верхнего левого угла.
+	<script>
+	
+	//Проверка видимости элемента -------------------------------------------------------------------+
+		function isHidden(elem) {
+		  return !elem.offsetWidth && !elem.offsetHeight;
+		}
+	
+	//Распахнуть элемент на всю высоту. http://learn.javascript.ru/metrics#offsetparent-offsetleft-top
+		element.style.height = element.scrollHeight + 'px';	
+	
+	//z. Размер прокрутки снизу ---------------------------------------------------------------------+
+		elem.scrollHeight - elem.scrollTop - elem.clientHeight;	
+	
+	//z. Узнать ширину прокрутки. -------------------------------------------------------------------+
+		// создадим элемент с прокруткой
+		var div = document.createElement('div');
+		div.style.overflowY = 'scroll';
+		div.style.width = '50px';
+		div.style.height = '50px';
+		// при display:none размеры нельзя узнать
+		// нужно, чтобы элемент был видим,
+		// visibility:hidden - можно, т.к. сохраняет геометрию
+		div.style.visibility = 'hidden';
+		document.body.appendChild(div);
+		var scrollWidth = div.offsetWidth - div.clientWidth;
+		document.body.removeChild(div);
+		alert( scrollWidth );	
+
+	//z. Создать див, похожий на существующий и изменить некоторые стили.  --------------------------+
+		//сохраняем элемент в переменную
+		var div = document.getElementById('moving-div'); 
+		//создаём новый элемент
+		var placeHolder = document.createElement('div'); 
+		//устанавливаем новому элементу такуеже высоту
+		placeHolder.style.height = div.offsetHeight + 'px'; 
+		// IE || другой браузер
+		var computedStyle = div.currentStyle || getComputedStyle(div, ''); 
+		//назначаем маргин новому элементу такойже как у див
+		placeHolder.style.marginTop = computedStyle.marginTop; 
+		//назначаем маргин новому элементу такойже как у див
+		placeHolder.style.marginBottom = computedStyle.marginBottom; 
+
+		
+	</script>
+
+### Координаты ###
+	Метод elem.getBoundingClientRect() - возвращает координаты элемента, под которыми понимаются размеры «воображаемого прямоугольника», который охватывает весь элемент.
+	Метод elem.getClientRects() - является объединением прямоугольников , возвращенных getClientRects()для элемента
+ 	pageX/pageY - координаты документа
+ 	clientX/clientY - координаты окна
+	<script>
+	//Показать координаты объекта/элемента ----------------------------------------------------------+
+		var rect = obj.getBoundingClientRect();
+
+	//Получить элемент который находится в верхнем левом углу экрана --------------------------------+
+		var elem = document.elementFromPoint(0, 0);
+
+	//Получить координаты относительно документа (-IE8) ---------------------------------------------+	
+		function getCoords(elem) { // кроме IE8-
+		  var box = elem.getBoundingClientRect();
+		  return {
+		    top: box.top + pageYOffset,
+		    left: box.left + pageXOffset
+		  };
+		}	
+
+	//Получить координаты относительно документа [Кросс-браузерный] ---------------------------------+
+		function getCoords(elem) {
+		  // (1)
+		  var box = elem.getBoundingClientRect();
+		  var body = document.body;
+		  var docEl = document.documentElement;
+		  // (2)
+		  var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+		  var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+		  // (3)
+		  var clientTop = docEl.clientTop || body.clientTop || 0;
+		  var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+		  // (4)
+		  var top = box.top + scrollTop - clientTop;
+		  var left = box.left + scrollLeft - clientLeft;
+
+		  return {
+		    top: top,
+		    left: left
+		  };
+		}
+		
+	//Общая ширина х высота -------------------------------------------------------------------------+
+		alert(screen.width + ' x ' + screen.height);
+
+	//Доступная ширина/высота (за вычетом таскбара и т.п.) ------------------------------------------+
+		alert(screen.availWidth + ' x ' + screen.availHeight);
+
+	//Координаты левого-верхнего угла браузера на экране --------------------------------------------+
+		alert( "Браузер находится на " + window.screenX + "," + window.screenY );	
+
+	//z. Область видимости документа ----------------------------------------------------------------+
+	  /*
+	  top – координата верхней границы видимой части (относительно документа).
+	  bottom – координата нижней границы видимой части (относительно документа).
+	  height – полная высота документа, включая прокрутку.
+	  */ 
+	  function getDocumentScroll() {
+	    var scrollHeight = Math.max(
+	      document.body.scrollHeight, document.documentElement.scrollHeight,
+	      document.body.offsetHeight, document.documentElement.offsetHeight,
+	      document.body.clientHeight, document.documentElement.clientHeight
+	    );
+	    return {
+	      top: pageYOffset,
+	      bottom: pageYOffset + document.documentElement.clientHeight,
+	      height: scrollHeight
+	    };
+	  }
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------
+Разберём адрес http://realadmin.ru/saytostroy/?page=4#top
+
+document.location.href			http://realadmin.ru/saytostroy/?page=4#top
+document.location.protocol	http:
+document.location.host			realadmin.ru
+document.location.pathname	/saytostroy/
+document.location.search		?page=4
+document.location.hash			#top
+-------------------------------------------------------------
+
+
+----------------поисковые методы
+document.getElementById(id) - запрос напрямую по id
+
+elem.querySelector(query) - перебирает все эелементы, прекращает перебор после первого же найденного элемента.
+elem.querySelectorAll(query) - перебирает все эелементы, собирает найденные элементы в «псевдомассив».
+
+elem.getElementsBy*(…) - При изменении документа – изменяется и результат запроса. Это спец объект, имеет нумерация и длинну как массивы.
+

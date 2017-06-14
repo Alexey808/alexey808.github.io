@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>transition-duration</title>
+    <style>
+        body { 
+            margin: 0; 
+        }
+        .menu {
+            position: absolute;
+            height: 100px; width: 100%;
+            background: #fc0;
+            border-bottom: 20px solid #333;
+            top: -100px;
+
+            transition-property: top;
+            transition-duration: 2s;
+        }
+        .menu:hover { 
+            top: 0; 
+        }
+/* +++++++++++++++++++++++++++++++++ */
+        .warn {
+            padding: 20px;
+            -webkit-transition-duration: 2s;
+            -o-transition-duration: 2s;
+            -moz-transition-duration: 2s;
+            transition-duration: 2s;
+        }
+        .warn:hover {
+            background: #44d22c;
+        }
+/* ++++++++++++++++++++++++++++++++++ */
+        .d {
+            background-color: #333;
+            width: 50px;
+            height: 50px;
+           
+
+
+        }
+
+        .d:hover{
+      /*      transition-property: top;*/
+transition-duration: 2s;
+
+transition: margin-left 250ms;
+            background-color: #888;
+    bottom: 300px;
+    /*width: 100px;*/
+           
+        }
+
+
+  </style>
+ </head>
+ <body>
+    <div class="menu">
+        <div class="warn">Вы не учли, что скалярное 
+             поле необходимо и достаточно!
+        </div>
+    </div>
+
+    <br><br><br><br>
+
+    <div id="d" class="d"></div>
+
+    </body>
+</html>
+
+
+
+<!-- http://htmlbook.ru/css/transition
+http://htmlbook.ru/css/transition-property
+http://htmlbook.ru/css/transition-duration
+http://htmlbook.ru/css/transition-timing-function
+http://htmlbook.ru/css/transition-delay -->
+
+
+<!-- 
+transition-property: top;
+transition-duration: 2s;
+transition-timing-function: linear;
+transition-delay: 0.5s;
+
+transition: left 3s linear 0.5s; 
+-->

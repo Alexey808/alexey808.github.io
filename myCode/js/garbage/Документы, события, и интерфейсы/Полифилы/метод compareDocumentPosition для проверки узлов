@@ -1,0 +1,15 @@
+// код с http://compatibility.shwups-cms.ch/en/polyfills/?&id=82
+(function() {
+  var el = document.documentElement;
+  if (!el.compareDocumentPosition && el.sourceIndex !== undefined) {
+
+    Element.prototype.compareDocumentPosition = function(other) {
+      return (this != other && this.contains(other) && 16) +
+        (this != other && other.contains(this) && 8) +
+        (this.sourceIndex >= 0 && other.sourceIndex >= 0 ?
+          (this.sourceIndex < other.sourceIndex && 4) +
+          (this.sourceIndex > other.sourceIndex && 2) : 1
+        ) + 0;
+    }
+  }
+}());
