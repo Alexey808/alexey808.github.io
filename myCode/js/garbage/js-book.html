@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JS book</title>
+
+  <script type="text/javascript">
+   function pokaz(descr){
+		var vid = document.getElementById(descr).style;
+		if (vid.display == "none") {vid.display = "block"; }
+		else {vid.display = "none";}
+   }  
+  </script>
+
+  <style type="text/css">
+  	li.catalog_1{
+  		list-style: none; /* Убираем исходные маркеры */ 
+  	}
+
+  	.example {
+
+  		border: 1px solid black; /* Параметры границы */
+  		width: 600px;
+  		display: block;
+  		padding: 5px 0 0 30px;
+  	}
+
+  	.title-span {
+  		font-weight: bold; /* Жирное начертание */
+  	}
+  </style>
+	</head>
+	<body>
+		<div class="main">
+			
+		<ul>
+			<li class="catalog_1"><a href="#" onClick="pokaz('array')">Array - Массив пронумерованных элементов, также может служить стеком или очередью </a></li>
+			<div id="array" style="display: none">
+			<ul><br>
+
+				<span class="title-span">Создание</span>
+				<ul class="create"> <!-- Создание -->
+					<li>var arr = []</li>
+				</ul><br>
+
+				<span class="title-span">Метод</span>
+				<ul class="methot"> <!-- Методы -->
+					
+
+					<li><a href="#" onClick="pokaz('methot')">push - Добовление элементов в конец массива.</a>
+						<div id="methot"><ul>
+							<br><div>
+							<span class="title-span">Синтакс:</span> <code>array.push( elem1, elem2, ... )</code>
+							</div><br>
+							<div class="example"><span class="title-span">Пример №1:</span><pre>
+// array.length = 2
+var array = [ "one", "two" ]  
+
+// добавить элементы "three", "four"
+var pushed = array.push("three", "four") 
+
+// теперь array = [ "one", "two", "three", "four" ] 
+// array.length = 4
+// pushed = 4
+							</pre></div>
+						</ul></div>
+					</li>
+
+					<li>shift</li>
+					<li>join</li>
+					<li>concat</li>
+					<li>pop</li>
+					<li>unshift</li>
+					<li>slice</li>
+					<li>reverse</li>
+					<li>sort</li>
+					<li>splice</li>
+				</ul><br>
+
+				<span class="property">Свойства</span>
+				<ul calss="property">
+					<li>index</li>
+					<li>input</li>
+					<li>length</li>
+				</ul><br>
+
+			</div>
+		</ul>
+
+
+
+
+
+			
+
+
+			</div>
+		</div>
+	</body>
+</html>
