@@ -1,5 +1,5 @@
 
-/* Основа */
+/* --- Основа ----------------------------------------------------- */
 
 * {
 	margin: 0;
@@ -8,6 +8,9 @@
 html,
 body {
 	height: 100%;
+	font-family: 'Cambria';
+	background: url(../img/white.png);
+	
 }
 .wrapper {
 	display: table;
@@ -22,28 +25,36 @@ body {
 }
 .footer {
 	height: 80px;
-	background: #d8d8d8;
+	background: #333;
+	background: url(../img/black.png)
 }
 
-/* Дополнительное */
+/* --- Дополнительное --------------------------------------------- */
 
+/* --- Шапка сайта --- */
 .header {
-	background-color: #24292e;
-	color: #fff;
+	background-color: #333;
+	background: url(../img/black.png);
 	text-align: center;
 	padding: 20px;
+	font-family: 'Nueva Std';
+    text-shadow: 0em 0em 1.5em #0086f7;
+	color: #ffffff;
 }
+
+/* -- Верхнее меню --- */
 .menu-top ul {
 	width: 100%;
-	background-color: #3e464e;
+	background-color: #466686;
 	text-align: center;
 	margin-top: 1px;
 }
 .menu-top ul li a {
+	text-decoration: none;
 	color: #fff;
 }
 .menu-top ul li {
-	background-color: #3e464e;
+	background-color: #466686;
 	font-size: 1.2em;
 	display: inline-block;
 	padding: 5px;
@@ -57,36 +68,78 @@ body {
 	background-color: #88b8d8;
 }
 
+/* --- Боковое меню --- */
 .menu-left {
-	float: left;
+	margin-top: 30px;
 	width: 300px;
+
+	background-color: #ececec
+	box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+	float: left;
+    
+}
+.menu-left ul {
+	padding-top: 20px;
+}
+.menu-left h2 {
+	text-align: center;
 }
 .menu-left ul li {
 	list-style: none;
-	padding: 3px 5px 3px 40px;
-	background-color: #333;
+	border-top: 1px solid #0086f7;
+	border-bottom: 1px solid #0086f7;
+	margin-top: -1px;
+
+
+}
+.menu-left ul li:hover {
+	text-shadow: 0em 0em 0.3em #90ccff;
+	text-decoration: underline;
+	background-color: #e9f6ff;
+	color: #0086f7;
+}
+.menu-left ul li a {
+	text-decoration: none;
+	color: #222;
+	display: block;
+	padding: 5px 20px;
+}
+.menu-left ul li a:hover {
+	color: #007cff;
 }
 
+/* --- Контент --- */
 .main {
-	/*height: 100%;*/
-	/*max-width: 1024px;*/
-
+	display: table;
+	margin: 20px auto;
+	width: 100%;
+	max-width: 1024px;
+}
+.content {
+	box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+	background-color: #ececec;
+	width: auto;
 	margin: auto;
-	background: #ececec;
+	display: inline-block;
 }
 .content h2 {
+	padding: 10px;
 	text-align: center;
 }
 .content__box {
-	padding-left: 320px;
+	/*padding-left: 320px;*/
 }
 .content__box div {
-	float: left;
-	margin: 5px;
-	width: 600px;
-	height: 400px;
-	background-color: #eeeeee;
-	border: 1px solid #000;
 	
+	margin: 5px;
+	width: 500px;
+	height: 340px;
+	background-color: #fff;
+	/*border: 1px solid #0086f7;*/
+	border-radius: 3px;
+	
+	box-shadow: 0 0 10px rgba(113, 179, 255, 0.5);
+	overflow: auto;
+	/*text-overflow: ellipsis;*/
 }
 
