@@ -70,25 +70,28 @@ body {
 
 /* --- Боковое меню --- */
 .menu-left {
-	margin-top: 30px;
 	width: 300px;
 
-	background-color: #ececec
-	box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+	background-color: #eaeaea;
+	box-shadow: 0 0 20px rgba(220, 220, 220, 1);
 	float: left;
+	margin: 0px 20px 20px 0px;
     
 }
 .menu-left ul {
-	padding-top: 20px;
 }
 .menu-left h2 {
 	text-align: center;
+	padding: 10px;
 }
 .menu-left ul li {
 	list-style: none;
-	border-top: 1px solid #0086f7;
-	border-bottom: 1px solid #0086f7;
-	margin-top: -1px;
+	/*border-top: 1px solid #0086f7;*/
+	/*border-bottom: 1px solid #0086f7;*/
+	/*margin-top: -1px;*/
+	background-color: rgba(68, 125, 181, 0.14)
+	margin: 2px;
+	border-radius: 3px;
 
 
 }
@@ -110,36 +113,43 @@ body {
 
 /* --- Контент --- */
 .main {
-	display: table;
-	margin: 20px auto;
+	/*display: table;*/
+	/*margin: 20px 20px 20px 0px;*/
 	width: 100%;
-	max-width: 1024px;
+	/*display: table;*/
+	/*margin: 20px 20px 20px 0px;*/
+	min-width: 850px;;
+	/*max-width: 1024px;*/
 }
 .content {
-	box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
-	background-color: #ececec;
-	width: auto;
-	margin: auto;
-	display: inline-block;
+
+	box-shadow: 0 0 20px rgb(220, 220, 220);
+	background-color: #eaeaea;
+	/*width: auto;*/
+	margin: 20px 20px 20px 0px;
+
+	display: table;;;;;;;
+
 }
 .content h2 {
-	padding: 10px;
 	text-align: center;
+	padding: 10px 0px 15px;
 }
 .content__box {
-	/*padding-left: 320px;*/
+	text-align: center;;
 }
 .content__box div {
-	
-	margin: 5px;
-	width: 500px;
 	height: 340px;
 	background-color: #fff;
-	/*border: 1px solid #0086f7;*/
-	border-radius: 3px;
-	
-	box-shadow: 0 0 10px rgba(113, 179, 255, 0.5);
+	width: 500px;
 	overflow: auto;
+	text-overflow: ellipsis;
+	display: inline-block;
+	text-align: left;
+	box-shadow: 0 0 10px rgba(113, 179, 255, 0.5);
+	margin: 5px;;
+	/* float: left; */
+	/* text-align: center; */;
 	/*text-overflow: ellipsis;*/
 }
 
