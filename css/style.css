@@ -72,13 +72,14 @@ body {
 .menu-left {
 	width: 300px;
 
-	background-color: #eaeaea;
-	box-shadow: 0 0 20px rgba(220, 220, 220, 1);
+	background-color: #e4e4e4;
+	box-shadow: 0 0 20px rgba(200, 200, 200, 1);
 	float: left;
 	margin: 0px 20px 20px 0px;
     
 }
 .menu-left ul {
+	margin: 10px;
 }
 .menu-left h2 {
 	text-align: center;
@@ -89,17 +90,24 @@ body {
 	/*border-top: 1px solid #0086f7;*/
 	/*border-bottom: 1px solid #0086f7;*/
 	/*margin-top: -1px;*/
-	background-color: rgba(68, 125, 181, 0.14)
-	margin: 2px;
+	background-color: #ffffff;
 	border-radius: 3px;
-
+	margin: 2px;
+	position: relative;
 
 }
 .menu-left ul li:hover {
 	text-shadow: 0em 0em 0.3em #90ccff;
 	text-decoration: underline;
-	background-color: #e9f6ff;
+	background-color: #c0e3ff;
 	color: #0086f7;
+}
+.menu-left ul li:hover:before{
+	content: "";
+	width: 10px; height: 0;
+border-top: 5px solid transparent;
+border-left: 10px solid #D0D4DC;
+border-bottom: 5px solid transparent;
 }
 .menu-left ul li a {
 	text-decoration: none;
@@ -123,8 +131,8 @@ body {
 }
 .content {
 
-	box-shadow: 0 0 20px rgb(220, 220, 220);
-	background-color: #eaeaea;
+	box-shadow: 0 0 20px rgb(200, 200, 200);
+	background-color: #e4e4e4;
 	/*width: auto;*/
 	margin: 20px 20px 20px 0px;
 
