@@ -126,8 +126,8 @@ body {
 	text-decoration: none;
 	color: #222;
 	display: block;
-	padding: 5px 20px;
-	width: 230px;
+	padding: 5px 15px 5px 20px;
+	width: 235px;
 	white-space: nowrap; 		/* Запрещаем перенос строк */
 	overflow: hidden; 			/* Обрезаем все, что не помещается в область */
 	text-overflow: ellipsis; 	/* Добавляем многоточие */
