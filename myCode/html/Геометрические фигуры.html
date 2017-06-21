@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Геометрические фигуры</title>
+	<style type="text/css">
+
+	/* круг */
+	.figure1 {
+	  width: 100px; height: 100px;
+	  background: #3388cc;
+	  border-radius: 50%;}
+
+	/* треугольник */
+	.figure2 {
+	  width: 0; height: 0;
+	  border-top: 50px solid transparent;
+	  border-left: 100px solid #3388cc;
+	  border-bottom: 50px solid transparent;}
+
+	/* угловой треугольник */
+	.figure3 {
+	  width: 0; height: 0;
+	  border-top: 100px solid #3388cc;
+	  border-right: 100px solid transparent;}
+
+	/* трапеция */
+	.figure4 {
+	  height: 0; width: 100px;
+	  border-bottom: 100px solid #3388cc;
+	  border-left: 50px solid transparent;
+	  border-right: 50px solid transparent;}
+
+	/* параллелограмм */
+	.figure5 {
+	  margin-left: 20px; width: 150px; height: 100px;
+	  transform: skew(20deg);
+	  background: #3388cc;}
+
+	/* стрелка */
+	.figure6 {
+	  width: 60px; height: 20px; margin: 10px 0;
+	  background: #3388cc;
+	  position: relative;}
+	.figure6:after{
+	  content: "";
+	  width: 0; height: 0;
+	  position: absolute; top: -10px; left: 100%;
+	  border-width: 20px 0 20px 40px;
+	  border-style: solid;
+	  border-color: transparent #3388cc;}
+
+	/* шестиугольник */
+	.figure7 {
+	  margin: 20px 0; width: 100px; height: 55px;
+	  background: #3388cc;
+	  position: relative;}
+	.figure7:before, .figure7:after {
+	  content: "";
+	  width: 0; height: 0;
+	  position: absolute; left: 0;
+	  border-left: 50px solid transparent;
+	  border-right: 50px solid transparent;}
+	.figure7:before {
+	  top: -25px;
+	  border-bottom: 25px solid #3388cc;}
+	.figure7:after {
+	  bottom: -25px;
+	  border-top: 25px solid #3388cc;}
+
+	/* ромб */
+	.figure8 {
+	  width: 0; height: 0;
+	  border: 50px solid transparent;
+	  border-bottom-color: #3388cc;
+	  position: relative; top: -50px;}
+	.figure8:after {
+	  content: "";
+	  width: 0; height: 0;
+	  position: absolute; left: -50px; top: 50px;
+	  border: 50px solid transparent;
+	  border-top-color: #3388cc;}
+
+	/* конверт */
+	.figure9 {
+	  height: 55px; width: 100px; margin: 35px 20px 0 0;
+	  background: #3388cc;
+	  position: relative;}
+	.figure9:before {
+	  content: "";
+	  height: 0; width: 0;
+	  position: absolute; left: 0; top: -35px;
+	  border-bottom: 35px solid #3388cc;
+	  border-left: 50px solid transparent;
+	  border-right: 50px solid transparent;}
+
+	/* шеврон */
+	.figure10 {
+	  height: 50px; width: 160px; margin: 6px;
+	  position: relative;}
+	.figure10:before, .figure10:after {
+	  content: "";
+	  height: 100%; width: 50%;
+	  position: absolute; top: 0;
+	  background: #3388cc;}
+	.figure10:before {
+	  left: 0;
+	  transform: skew(0deg, 10deg);}
+	.figure10:after {
+	  right: 0;
+	  transform: skew(0deg, -10deg);}
+
+	/* лента */
+	.figure11 {
+	  width: 0; height: 0; 
+	  border-width: 50px 30px 20px;
+	  border-style: solid;
+	  border-color: #3388cc #3388cc transparent;}
+
+	/* облочко комментария */
+	.figure12 {
+	  width: 150px; height: 80px; margin-left: 26px;
+	  background: #3388cc;
+	  position: relative;
+	  border-radius: 10px;}
+	.figure12:before {
+	  content: "";
+	  width: 0; height: 0;
+	  position: absolute; right: 100%; top: calc(50% - 12px);
+	  border-top: 12px solid transparent;
+	  border-right: 24px solid #3388cc;
+	  border-bottom: 12px solid transparent;}
+
+	</style>
+</head>
+<body>
+	<div class="figure1"></div><!-- круг --><br><hr><br>
+	<div class="figure2"></div><!-- треугольник --><br><hr><br>
+	<div class="figure3"></div><!-- угловой треугольник --><br><hr><br>
+	<div class="figure4"></div><!-- трапеция --><br><hr><br>
+	<div class="figure5"></div><!-- параллелограмм --><br><hr><br>
+	<div class="figure6"></div><!-- стрелка --><br><hr><br>
+	<div class="figure7"></div><!-- шестиугольник --><br><hr><br>
+	<div class="figure8"></div><!-- ромб --><br><hr><br>
+	<div class="figure9"></div><!-- конверт --><br><hr><br>
+	<div class="figure10"></div><!-- шеврон --><br><hr><br>
+	<div class="figure11"></div><!-- лента --><br><hr><br>
+	<div class="figure12"></div><!-- облочко комментария -->
+</body>
+</html>

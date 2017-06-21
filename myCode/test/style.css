@@ -1,4 +1,4 @@
-.back {
+.tab {
   width: 600px;
   height: 360px;
   background: #ccc;
@@ -20,7 +20,9 @@
   width: 520px;
   height: 270px;
 }
-
+#one {
+  display: block;
+}
 div:target {
   display: block;
 }
