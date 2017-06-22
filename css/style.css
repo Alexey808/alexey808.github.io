@@ -72,7 +72,6 @@ body {
 /* --- Боковое меню --- */
 .menu-left {
 	width: 300px;
-
 	background-color: #e4e4e4;
 	float: left;
 	margin: 0px 20px 20px 0px;
@@ -124,7 +123,6 @@ body {
     border-left: 10px solid rgb(96, 167, 247);
 }
 .menu-left ul li:active{
-
 	box-shadow: 0px 0px 0px 0px #6ea8ff;
 }
 .menu-left ul li a {
