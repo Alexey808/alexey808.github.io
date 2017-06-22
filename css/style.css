@@ -115,13 +115,13 @@ body {
 
 }
 .menu-left ul li:hover:before{
-   content: '';
-   border: 10px solid transparent;
-   position: absolute;
-   left: -20px;
-   top: 50%;
-   margin-top: -10px;
-   border-right: 10px solid rgb(96, 167, 247);
+    content: '';
+    border: 10px solid transparent;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    margin-top: -10px;
+    border-left: 10px solid rgb(96, 167, 247);
 }
 .menu-left ul li:active{
 
@@ -133,9 +133,9 @@ body {
 	display: block;
 	padding: 5px 15px 5px 20px;
 	width: 235px;
-	white-space: nowrap; 		/* Запрещаем перенос строк */
-	overflow: hidden; 			/* Обрезаем все, что не помещается в область */
-	text-overflow: ellipsis; 	/* Добавляем многоточие */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 
 }
 .menu-left ul li a:hover {
