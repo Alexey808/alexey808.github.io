@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>&#207;&#240;&#232;&#236;&#229;&#240;</title>
+ 
+<script language="JavaScript" type="text/javascript">
+ 
+var req;
+ 
+function processReqChange() {
+    if (req.readyState == 4){      
+        if (req.status == 200){ //200
+            document.getElementById('content').innerHTML=req.responseText;      
+        };        
+    };
+};
+ 
+function loadXMLDoc(url) {  
+    if (window.XMLHttpRequest) {        
+        req = new XMLHttpRequest();        
+        req.onreadystatechange = processReqChange;        
+        req.open("GET", url, true);        
+        req.send(null);    
+    } else if (window.ActiveXObject) {        
+        req = new ActiveXObject("Microsoft.XMLHTTP");        
+        if (req) {            
+            req.onreadystatechange = processReqChange;
+            req.open("GET", url, true);    
+            req.send();         
+        };   
+    };
+};
+ 
+function getFile(url){
+    loadXMLDoc(url);   
+};    
+ 
+</script>
+ 
+ 
+</head>
+<body>
+ 
+<a href="#" onclick="getFile('page1.txt')">1</a>
+<a href="#" onclick="getFile('page2.txt')">2</a>
+<a href="#" onclick="getFile('page3.txt')">3</a>
+ 
+<div id='content'></div>
+ 
+</body>
+</html>
