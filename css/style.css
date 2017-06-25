@@ -167,8 +167,6 @@ body {
 	padding: 10px 0px;
     color: #ffffff;
     background-color: #6f6f6f;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
 	box-shadow: 0 0 10px rgb(119, 119, 119);
 	margin-bottom: 12px;
 }
@@ -197,7 +195,15 @@ body {
 	background-color: #b3cee8;
 	color: #333;
 }
-.box__pages {
-	max-width: 710px; //720
+.box__pages { //720
 	max-height: 1230px; //1280
+}
+
+
+    iframe {
+  
+  background: url("../img/code.jpg") no-repeat;
+  background-size: contain;
+  
+  width: 100%;
 }
