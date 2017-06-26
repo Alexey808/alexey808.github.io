@@ -197,6 +197,7 @@ body {
 }
 .box__pages {
 	max-height: 1230px;
+	position: relative; 
 	
 }
 
@@ -205,8 +206,9 @@ iframe {
   
   background: url("../img/code.jpg") no-repeat;
   background-size: contain;
+position: absolute; 
 
-  width: 100%;
+height: 100%; 
+width: 100%;
 
-/*border: none;*/
 }
