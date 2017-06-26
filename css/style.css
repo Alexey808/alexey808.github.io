@@ -147,7 +147,7 @@ body {
 	width: 100%;
 	/*display: table;*/
 	/*margin: 20px 20px 20px 0px;*/
-	min-width: 850px;;
+	
 	/*max-width: 1024px;*/
 }
 .content {
@@ -180,7 +180,7 @@ body {
 	width: 875px;
 	overflow: auto;
 	text-overflow: ellipsis;
-	display: inline-block;
+	/*display: inline-block;*/
 	text-align: left;
 	margin: 5px;
 	
@@ -195,15 +195,18 @@ body {
 	background-color: #b3cee8;
 	color: #333;
 }
-.box__pages { //720
-	max-height: 1230px; //1280
+.box__pages {
+	max-height: 1230px;
+	
 }
 
 
-    iframe {
+iframe {
   
   background: url("../img/code.jpg") no-repeat;
   background-size: contain;
-  
+
   width: 100%;
+
+/*border: none;*/
 }
