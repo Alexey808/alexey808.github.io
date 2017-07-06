@@ -55,22 +55,22 @@
           <li><a href="#">Ссылка 9</a></li>
         </ul>
       </div>
-  
-      <script>console.log("test script");</script>
+
 
       <div class="content">
-        <h2>&lt; &#123; CODE FRAME &#125; &gt;</h2>
-        <div class="content__box" id="content__box">
-          <div>    
-            <div class="box__pages">
+        <div>
+          <h2>&lt; &#123; CODE FRAME &#125; &gt;</h2>
+          <div class="content__box" id="content__box">
 
-              <!--  <iframe src="" name="myCode" scrolling="no"width="100%" height="100%"/> -->
-              <iframe src="" id="myCode" scrolling="no"></iframe>
-            
+               
+              <div class="box__pages">
+                <iframe src="" id="myCode" name="myCode" scrolling="no"></iframe>
+              
+                <!-- $('iframe').css({'height':$(window).height() - $('iframe').position().top + 'px'}); -->
+              </div>
+              <div class="box__notes">Заметка если не обходима</div>
+           
 
-              <!-- $('iframe').css({'height':$(window).height() - $('iframe').position().top + 'px'}); -->
-            </div>
-            <div class="box__notes">Заметка если не обходима</div>
           </div>
         </div>
       </div>
@@ -90,6 +90,8 @@
   </div>
   <!-- /***FOOTER*** -->
     
+  
+      <script>console.log("test script");</script>
 
   </div> 
 </body>
