@@ -176,17 +176,7 @@ margin: 20px auto;
 	
 }
 
-.content__box>div{
 
-	// width: 875px;
-	// overflow: auto;
-	// text-overflow: ellipsis;
-	// /*display: inline-block;*/
-	// text-align: left;
-	// margin: 5px;
-	
-	// box-shadow: 1px 1px 1px 1px #999;
-}
 
 .box__notes {
 	height: 40px;
@@ -203,9 +193,7 @@ margin: 20px auto;
 
 	background: url("../img/code.jpg") no-repeat;
 	background-color: #fff;
-	// position: relative; 
-	// width: 900px;
-	// height: 700px;
+
 }
 
 
