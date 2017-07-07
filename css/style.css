@@ -159,11 +159,11 @@ body {
 	min-width: 900px;
 
 }
-.content>div {
-	min-width: 915px;
-	background-color: green;
-	height: 520px;
-}
+// .content>div {
+// 	min-width: 915px;
+// 	background-color: green;
+// 	height: 520px;
+// }
 .content h2 {
 	text-align: center;
 	padding: 10px 0px;
