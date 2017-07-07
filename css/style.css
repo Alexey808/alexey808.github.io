@@ -152,8 +152,8 @@ body {
 	/*max-width: 1024px;*/
 }
 .content {
-	box-shadow: 0 0 20px rgb(200, 200, 200);
-	background-color: #e4e4e4;
+	
+	// background-color: #e4e4e4;
 	display: grid;
 	// margin: 20px auto;
 	// margin-top: 20px;
@@ -165,10 +165,22 @@ body {
 
 }
 .content {
-margin: 20px auto;
-
+	margin: 20px auto;
 }
-.content h2 {
+.content__list h2 {
+	text-align: center;
+	padding: 10px 0px;
+	height: 30px;
+    color: #ffffff;
+    background-color: #6f6f6f;
+	box-shadow: 0 0 10px rgb(119, 119, 119);
+	margin: 0px;
+}
+.content__list {
+	margin-bottom: 20px;
+	background-color: #fff;
+}
+.content__box h2 {
 	width: 100%;
 	position: absolute;
 	text-align: center;
@@ -181,6 +193,7 @@ margin: 20px auto;
 	margin: 0px;
 }
 .box__notes {
+	box-shadow: 0 0 20px rgb(200, 200, 200);
 	height: 40px;
 	background-color: #fff;
 	color: #333;
