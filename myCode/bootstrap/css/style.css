@@ -1,0 +1,10 @@
+body {
+	margin-top: 10px;
+}
+.row div { 
+	border: solid 1px #333; 
+	background-color: #e0e0e0;
+}
+.row {
+	// margin-bottom: 10px;
+}
