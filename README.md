@@ -38,7 +38,11 @@ git remote show shared //где shared наименование адреса
 ```
 git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 ```
-
+### Исключения
+```
+.git/info/exclude - Этот файл не коммитуется и остается только в локальном репозитории.
+.gitconfig:  excludesfile = ~/.gitexcludes - Исключение для компьютера
+```
 ## Прочее
 ```
 -----
