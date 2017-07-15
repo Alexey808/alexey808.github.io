@@ -249,3 +249,9 @@ git daemon --verbose --export-all --base-path=.
 git clone git://localhost/hello.git network_hello
 ```
 
+
+
+
+
+#игнорируем всё в каталоге node_modules
+myCode/sass/node_modules/
