@@ -253,5 +253,12 @@ git clone git://localhost/hello.git network_hello
 
 
 
-#игнорируем всё в каталоге node_modules
-myCode/sass/node_modules/
+#Gulp
+Установка nodejs необходимая для npm
+  sudo apt-get install nodejs
+Установка gulp глобально
+  npm install -g gulp
+Создание начального файла package.json
+  npm init
+Удалить локальный пакет с сохранинем изменений в package.json
+  npm uninstall --save-dev mypackage
