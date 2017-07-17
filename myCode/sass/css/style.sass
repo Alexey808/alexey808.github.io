@@ -1,0 +1,33 @@
+/* Переменная со шрифтом и цветом*/
+$font-stack: sans-serif
+
+@import additional 
+
+/* Миксин */
+// @mixin text-shadow($shadow)
+=text-shadow($shadow)
+	-webkit-text-shadow: $shadow
+	-moz-text-shadow: $shadow
+	-ms-text-shadow: $shadow
+	text-shadow: $shadow
+
+body
+	font: $font-stack
+	margin: 0px
+
+main
+	margin: auto
+	padding: 0px
+	width: 600px / 960px * 100%
+
+h1
+	
+	color: $primary-color 
+	text-align: center 
+	+text-shadow: (0em 0em 0.3em #333)
+	// @include text-shadow: 0em 0em 0.3em #333;
+	
+p 
+	@extend h1 /* наследование */
+	font-style: italic
+
