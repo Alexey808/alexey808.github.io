@@ -1,11 +1,13 @@
-/* Переменная со шрифтом и цветом*/
-$font-stack: sans-serif
 
-@import additional 
 
-/* Миксин */
-// @mixin text-shadow($shadow)
-=text-shadow($shadow)
+
+
+$font-stack: sans-serif //Переменная со шрифтом и цветом
+
+@import additional //импорт файла _additional.sass
+
+
+=text-shadow($shadow) //миксин
 	-webkit-text-shadow: $shadow
 	-moz-text-shadow: $shadow
 	-ms-text-shadow: $shadow
@@ -15,19 +17,19 @@ body
 	font: $font-stack
 	margin: 0px
 
-main
+.main
+	vertical-align: middle
 	margin: auto
 	padding: 0px
 	width: 600px / 960px * 100%
+	//вложенности (.main h1, .main p)
+	h1
+		color: $primary-color 
+		text-align: center 
+		+text-shadow(0em 0em 0.3em #333) //использование миксина
 
-h1
-	
-	color: $primary-color 
-	text-align: center 
-	+text-shadow: (0em 0em 0.3em #333)
-	// @include text-shadow: 0em 0em 0.3em #333;
-	
-p 
-	@extend h1 /* наследование */
-	font-style: italic
+	p 
+		@extend h1 //наследование
+		font-style: italic
+
 
