@@ -3,8 +3,10 @@
 
 
 $font-stack: sans-serif //Переменная со шрифтом и цветом
+$primary-color: #333
 
-@import additional //импорт файла _additional.sass
+//импорт файла _additional.sass
+@import additional  
 
 
 =text-shadow($shadow) //миксин
@@ -17,19 +19,25 @@ body
 	font: $font-stack
 	margin: 0px
 
+
 .main
 	vertical-align: middle
 	margin: auto
 	padding: 0px
+	text-align: center 
 	width: 600px / 960px * 100%
-	//вложенности (.main h1, .main p)
-	h1
-		color: $primary-color 
-		text-align: center 
-		+text-shadow(0em 0em 0.3em #333) //использование миксина
 
-	p 
-		@extend h1 //наследование
+	//вложенности 
+	.main__header
+		@extend .fixed //наследование
+		color: $primary-color 
+		font-size: 90pt
+	.main__list 
+		@extend .fixed //наследование
 		font-style: italic
+		padding: 0px
+		font-size: xx-large
+	li 
+		list-style: none
 
 
