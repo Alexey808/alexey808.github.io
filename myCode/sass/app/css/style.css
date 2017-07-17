@@ -1,0 +1,40 @@
+.fixed-header, .main .main__header {
+  -webkit-text-shadow: 0.01em 0.01em 0.1em #0e0e0e;
+  -moz-text-shadow: 0.01em 0.01em 0.1em #0e0e0e;
+  -ms-text-shadow: 0.01em 0.01em 0.1em #0e0e0e;
+  text-shadow: 0.01em 0.01em 0.1em #0e0e0e;
+}
+
+body {
+  font: sans-serif;
+  margin: 0px;
+  padding: 50px;
+}
+
+.main {
+  background-color: #e2e2e2;
+  margin: auto;
+  padding: 50px;
+  text-align: center;
+  width: 62.5%;
+  -webkit-box-shadow: 0 0 20px #636363;
+  -moz-box-shadow: 0 0 20px #636363;
+  -ms-box-shadow: 0 0 20px #636363;
+  box-shadow: 0 0 20px #636363;
+}
+
+.main .main__header {
+  color: #333;
+  font-size: 90pt;
+  margin: 0px;
+}
+
+.main .main__list {
+  font-style: italic;
+  padding: 0px;
+  font-size: xx-large;
+}
+
+.main li {
+  list-style: none;
+}
