@@ -86,6 +86,23 @@ justify-content - justify-content: flex-start | flex-end | center | space-betwee
 		outline-style - Задаёт стиль внешней границы элемента.
 		outline-width - Задаёт толщину внешней границы элемента.
 
+--- Курсор ---
+	cursor - Изменяет внешний вид курсора
+		cursor: default
+		cursor: crosshair
+		cursor: pointer
+		cursor: move
+		cursor: text
+		cursor: wait
+		cursor: help
+		cursor: n-resize
+		cursor: ne-resize
+		cursor: e-resize
+		cursor: se-resize
+		cursor: s-resize
+		cursor: sw-resize
+		cursor: w-resize
+		cursor: nw-resize
 --- КОНТЕНТ ---
 
 	content - Позволяет вставлять генерируемое содержание в текст веб-страницы, которое первоначально в тексте отсутствует.
