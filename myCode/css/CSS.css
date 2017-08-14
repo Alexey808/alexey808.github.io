@@ -1,3 +1,8 @@
+//Переопределение стилей, прописанных в самом html элементе -----------------+
+.myclass[style] {
+	color: red !important;
+}
+---
 WebReference.ru.
 http://uroki-css.ru/cssref/pr_gen_content.php
 

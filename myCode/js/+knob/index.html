@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test(jquery.knob.js)</title>
+	<script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script> 
+	<script type="text/javascript" src="lib/jquery.knob.min.js"></script> 
+	<style type="text/css">
+		
+
+		.dial[style] {
+			color: red !important;
+		}
+	</style>
+</head>
+<body>
+
+     
+<input type="text" value="85" id="circle" class="circle dial">
+<input type="text" value="65" class="circle dial">
+<input type="text" value="80" class="circle dial">
+<input type="text" value="65" class="circle dial">
+<input type="text" value="85" class="circle dial">
+<script>
+    $(function() {
+		$(".dial").knob({
+		    'min':0, //минимальное значение
+		    'max':100, //максимальное значение
+		    'angleArc': 360, //размер дуги в градусах
+		    'angleOffset':1, //поворот диаграммы в градусах
+        	'width': 200, //ширина
+        	'height': 200, //высота
+        	'fgColor': '#e93b90', //цвет заполняющий шкалы
+        	'bgColor': '#efefef', //цвет фона пустой части диаграммы
+        	'thickness': 0.05, //толщина
+		});
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
