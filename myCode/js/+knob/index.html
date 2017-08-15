@@ -8,18 +8,42 @@
 		
 
 		.dial[style] {
-			color: red !important;
+			color: #a4a4a4 !important;
+			margin-left: -160px !important;
+			font-size: 33pt;
+		}
+
+		.circle { 
+			display: inline-block; 
+			position: relative;
+
+		}
+		.circle:after {
+			content: '%';
+			color: #a4a4a4;
+			position: absolute;
+			top: 73px;
+			left: 116px;
+			font-size: 32pt;		
+		}
+		input[value="100"] {
+	
+			color: red;
+	
+	
 		}
 	</style>
 </head>
 <body>
 
      
-<input type="text" value="85" id="circle" class="circle dial">
-<input type="text" value="65" class="circle dial">
-<input type="text" value="80" class="circle dial">
-<input type="text" value="65" class="circle dial">
-<input type="text" value="85" class="circle dial">
+	<div class="circle"><input type="text" value="85" class="dial"></div>
+	<div class="circle"><input type="text" value="65" class="dial"></div>
+	<div class="circle"><input type="text" value="80" class="dial"></div>
+	<div class="circle"><input type="text" value="65" class="dial"></div>
+	<div class="circle"><input type="text" value="100" class="dial"></div>
+	<input type="text" value="100" name="">
+
 <script>
     $(function() {
 		$(".dial").knob({
@@ -32,10 +56,29 @@
         	'fgColor': '#e93b90', //цвет заполняющий шкалы
         	'bgColor': '#efefef', //цвет фона пустой части диаграммы
         	'thickness': 0.05, //толщина
+        	'fontWeight': false,
+        	//'readOnly': true
 		});
     });
 </script>
+<script>
 
+/*когда у элемента .dial будет [value="100"] надо добавить стиль классу .circle*/
+	
+$('.dial').each(function(index){
+
+  var val = $(this).attr('value');
+  if (val == 100) {
+  	//$('div.info').css('background','grey');
+  	$(this).css('color', 'green');
+  	var test = $(this)
+  	test.css('color', '#459');
+  	console.log(test);
+  }
+  //console.log(val);
+});
+
+</script>
 
 
 
@@ -43,3 +86,4 @@
 
 </body>
 </html>
+
