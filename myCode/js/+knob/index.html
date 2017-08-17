@@ -7,12 +7,14 @@
 	<style type="text/css">
 
 
-	/*	.dial[style] {
+		.dial[style] {
 			color: #a4a4a4 !important;
 			margin-left: -160px !important;
 			font-size: 33pt;
-		}*/
-
+		}
+		.test[style] {
+			color: red !important;
+		}
 		.circle { 
 			display: inline-block; 
 			position: relative;
@@ -38,11 +40,11 @@
 <body>
 
      
-	<div class="circle"><input type="text" value="100" class="test dial"></div>
-	<div class="circle"><input type="text" value="65" class="test dial"></div>
-	<div class="circle"><input type="text" value="80" class="test dial"></div>
-	<div class="circle"><input type="text" value="65" class="test dial"></div>
-	<div class="circle"><input type="text" value="100" class="test dial"></div>
+	<div class="circle"><input type="text" value="100" class="dial"></div>
+	<div class="circle"><input type="text" value="65" class="dial"></div>
+	<div class="circle"><input type="text" value="80" class="dial"></div>
+	<div class="circle"><input type="text" value="65" class="dial"></div>
+	<div class="circle"><input type="text" value="100" class="dial"></div>
 	<input type="text" value="100" name="">
 
 	<div class="d" style="background:green">div</div>
@@ -79,6 +81,7 @@ $('.dial').each(function(index){
   	//$(this).attr('style', 'background: red !important');
   	//$('.dial').attr('style', $('.dial').attr('style') + ';' + 'color: red !important');
   	//val.style.setProperty( 'color', 'green', 'important' );
+  	$(this).addClass('test');
   	console.log(this)
   } else {
   	console.log("else");
@@ -89,12 +92,16 @@ $('.dial').each(function(index){
 
 
 
-$( '.test').each(function () {
-    this.style.setProperty( 'color', 'green', 'important' );
+// $( '.test').each(function () {
+//     this.style.setProperty( 'color', 'blue', 'important' );
 
-});
+// });
 </script>
 
+
+	<script>
+		//document.querySelectorAll('');
+	</script>
 </body>
 </html>
 
