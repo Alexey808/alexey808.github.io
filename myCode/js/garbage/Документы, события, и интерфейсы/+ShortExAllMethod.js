@@ -25,7 +25,7 @@
 	document.head - Элемент <HEAD> (IE9+)
 
 По всем узлам:
-	parentNode
+	elem.parentNode - получить родительский элемент
 	nextSibling previousSibling
 	childNodes firstChild lastChild
 
