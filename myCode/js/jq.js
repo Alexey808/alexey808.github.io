@@ -11,12 +11,12 @@ $('.myClass').removeAttr('nameAttr');
 
 
 
-//---
+//использование стиля в связке с !important
 $('.dial').attr('style', 'background: red !important');
 $('.dial').style('color', 'red', 'important');
-
-
-
+$('.dial').attr('style', $('.dial').attr('style') + ';' + 'color: red !important');
+$('.dial').style.setProperty( 'color', 'green', 'important' );
+$( '.test').each(function () {this.style.setProperty( 'color', 'blue', 'important' ); });
 
 
 

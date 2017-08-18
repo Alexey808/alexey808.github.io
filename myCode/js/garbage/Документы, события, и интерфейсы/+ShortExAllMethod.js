@@ -317,7 +317,7 @@
 //Перебор элементов по классу
 	var item = document.querySelectorAll("div.item");
 	//Переводим в массив
-	var arr = Array.prototype.slice.call(item)
+	var arr = Array.prototype.slice.call(item);
 
 	arr.forEach(function(index, array, currentValue) {
 		//в данном примере array,currentValue тут не используются
