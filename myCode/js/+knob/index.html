@@ -9,11 +9,19 @@
 
 		.dial[style] {
 			color: #a4a4a4 !important;
-			margin-left: -160px !important;
+			margin-left: -152px !important;
 			font-size: 33pt;
 		}
-		.hundred[style] {
-			color: red !important;
+		.dial_marging[style] {
+			margin-left: -171px !important;
+		}
+		.hundred:after {
+			content: '%';
+			color: #a4a4a4;
+			position: absolute;
+			top: 73px;
+			left: 116px;
+			font-size: 32pt;
 		}
 		.circle { 
 			display: inline-block; 
@@ -94,15 +102,18 @@
 
 		dialArr.forEach(function(index, array, currentValue) {
 			var t = index.getAttribute('value');
-			console.log(t);
-			if (t >= 100){
-				index.classList.add('hundred');
+			if (t >= 100) {
+				var parent = index.parentNode;
+				parent.classList.add('hundred');
+				index.classList.add('dial_marging');
+			} else if (t < 100) {
+				var parent = index.parentNode;
+				parent.classList.remove('hundred');
+				index.classList.remove('dial_marging');
 			} else {
 				return;
 			}
-			
 		});
-
 	</script>
 </body>
 </html>
