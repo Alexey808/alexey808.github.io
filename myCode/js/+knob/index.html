@@ -91,28 +91,18 @@
 	<script>
 		var dial = document.querySelectorAll('.dial');
 		var dialArr = Array.prototype.slice.call(dial);
-		//console.log(dial)
 
-		
 		dialArr.forEach(function(index, array, currentValue) {
-			var test = index.getAttribute('value');
-			console.log(test);
-
-			// var classList = index.classList;	
-			// classList.add('hundred');
-			// index.style.color = 'black';
+			var t = index.getAttribute('value');
+			console.log(t);
+			if (t >= 100){
+				index.classList.add('hundred');
+			} else {
+				return;
+			}
+			
 		});
-		// var item = document.querySelectorAll('.dial');
-		// //Переводим в массив
-		// var arr = Array.prototype.slice.call(item);
 
-		// arr.forEach(function(index, array, currentValue) {
-		// 	//в данном примере array,currentValue тут не используются
-		// 	var patch = index.style;
-		//     patch.width = '50px';
-		//     patch.height = '50px';
-		//     patch.backgroundColor = '#444';
-		// })
 	</script>
 </body>
 </html>
