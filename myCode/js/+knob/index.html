@@ -5,8 +5,6 @@
 	<script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script> 
 	<script type="text/javascript" src="lib/jquery.knob.min.js"></script> 
 	<style type="text/css">
-
-
 		.dial[style] {
 			color: #a4a4a4 !important;
 			margin-left: -152px !important;
@@ -28,34 +26,15 @@
 			position: relative;
 
 		}
-		/*.circle:after {
-			content: '%';
-			color: #a4a4a4;
-			position: absolute;
-			top: 73px;
-			left: 116px;
-			font-size: 32pt;		
-		}*/
-/*		input[value="100"] {
-	
-			color: red;
-	
-	
-		}*/
-
 	</style>
 </head>
 <body>
 
-     
 	<div class="circle"><input type="text" value="100" class="dial"></div>
 	<div class="circle"><input type="text" value="65" class="dial"></div>
 	<div class="circle"><input type="text" value="80" class="dial"></div>
 	<div class="circle"><input type="text" value="65" class="dial"></div>
 	<div class="circle"><input type="text" value="100" class="dial"></div>
-
-
-
 
 <script>
     $(function() {
@@ -75,28 +54,22 @@
     });
 </script>
 
-	<script>
-
-
-
-/*когда у элемента .dial будет [value="100"] надо добавить стиль классу .circle*/
-// $('.dial').each(function(index){
-//   var val = $(this).attr('value');
-//   if (val == 100) {
-//   	$(this).addClass('hundred');
-//   	console.log(this)
-//   } else {
-//   	console.log("else");
-//   }
-// });
-
-
-
-
+<!-- Решение на jQuery-->
+<script>
+$('.dial').each(function(index){
+  var val = $(this).attr('value');
+  if (val == 100) {
+  	var parent = $(this).parent()
+  	$(parent).addClass('dial_marging');
+  	//console.log($(this).parent())
+  } else {
+  	console.log("else");
+  }
+});
 </script>
 
 
-	<script>
+<!-- 	<script>
 		var dial = document.querySelectorAll('.dial');
 		var dialArr = Array.prototype.slice.call(dial);
 
@@ -114,7 +87,7 @@
 				return;
 			}
 		});
-	</script>
+	</script> -->
 </body>
 </html>
 
