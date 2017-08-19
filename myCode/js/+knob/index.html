@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- 
+	Круговые диаграммы библиотеки knob.js
+	Если значение будет ровно или больше 100, добавляется % и отступ при помощи
+	добавления классов "hundred" и "dial_marging" к элементу.
+	-->
 	<title>test(jquery.knob.js)</title>
 	<script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script> 
 	<script type="text/javascript" src="lib/jquery.knob.min.js"></script> 
@@ -34,7 +39,7 @@
 	<div class="circle"><input type="text" value="65" class="dial"></div>
 	<div class="circle"><input type="text" value="80" class="dial"></div>
 	<div class="circle"><input type="text" value="65" class="dial"></div>
-	<div class="circle"><input type="text" value="100" class="dial"></div>
+	<div class="circle"><input type="text" value="85" class="dial"></div>
 
 <script>
     $(function() {
@@ -48,46 +53,46 @@
         	'fgColor': '#e93b90', //цвет заполняющий шкалы
         	'bgColor': '#efefef', //цвет фона пустой части диаграммы
         	'thickness': 0.05, //толщина
-        	'fontWeight': false,
-        	'readOnly': true
+        	'fontWeight': false, //жирность шрифта
+        	'readOnly': true //отключить онлайн взаимодействие с диаграммой
 		});
     });
 </script>
 
 <!-- Решение на jQuery-->
 <script>
-$('.dial').each(function(index){
-  var val = $(this).attr('value');
-  if (val == 100) {
-  	var parent = $(this).parent()
-  	$(parent).addClass('dial_marging');
-  	//console.log($(this).parent())
-  } else {
-  	console.log("else");
-  }
-});
+	$('.dial').each(function(index){
+	  	var val = $(this).attr('value');
+	  	if (val >= 100) {
+	  		var parent = $(this).parent()
+	  		$(parent).addClass('hundred');
+	  		$(this).addClass('dial_marging');
+	  	} else if (val < 100) {
+	  		var parent = $(this).parent()
+	  		$(parent).removeClass('hundred');
+	  		$(this).removeClass('dial_marging');
+	  } else { return; }
+	});
 </script>
 
+<!-- Решение на JavaScript -->
+<script>
+	var dial = document.querySelectorAll('.dial'); //получить все элементы классв .dial
+	var dialArr = Array.prototype.slice.call(dial); //переводим их в массив
+	dialArr.forEach(function(index, array, currentValue) { //перебор массива
+		var val = index.getAttribute('value'); //получаем значение атрибута
+		if (val >= 100) { 
+			var parent = index.parentNode; //определяем родителя
+			parent.classList.add('hundred'); //добавляем родителю класс
+			index.classList.add('dial_marging'); //добавляем текщ элементу класс
+		} else if (val < 100) {
+			var parent = index.parentNode;
+			parent.classList.remove('hundred'); //удаляем у родителя класс
+			index.classList.remove('dial_marging'); //удаляем у текщ элемента класс
+		} else { return; }
+	});
+</script>
 
-<!-- 	<script>
-		var dial = document.querySelectorAll('.dial');
-		var dialArr = Array.prototype.slice.call(dial);
-
-		dialArr.forEach(function(index, array, currentValue) {
-			var t = index.getAttribute('value');
-			if (t >= 100) {
-				var parent = index.parentNode;
-				parent.classList.add('hundred');
-				index.classList.add('dial_marging');
-			} else if (t < 100) {
-				var parent = index.parentNode;
-				parent.classList.remove('hundred');
-				index.classList.remove('dial_marging');
-			} else {
-				return;
-			}
-		});
-	</script> -->
 </body>
 </html>
 
