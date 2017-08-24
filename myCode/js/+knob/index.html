@@ -12,34 +12,36 @@
 	<style type="text/css">
 		.dial[style] {
 			color: #a4a4a4 !important;
-			margin-left: -152px !important;
+			margin-left: -160px !important;
 			font-size: 33pt;
 		}
-		.dial_marging[style] {
+		.dial_marging-three[style] {
 			margin-left: -171px !important;
 		}
 		.hundred:after {
+			left: 116px;
+		}
+		.postfix:after {
 			content: '%';
 			color: #a4a4a4;
 			position: absolute;
 			top: 73px;
 			left: 116px;
-			font-size: 32pt;
+			font-size: 32pt;		
 		}
 		.circle { 
 			display: inline-block; 
 			position: relative;
-
 		}
 	</style>
 </head>
 <body>
 
-	<div class="circle"><input type="text" value="100" class="dial"></div>
-	<div class="circle"><input type="text" value="65" class="dial"></div>
-	<div class="circle"><input type="text" value="80" class="dial"></div>
-	<div class="circle"><input type="text" value="65" class="dial"></div>
-	<div class="circle"><input type="text" value="85" class="dial"></div>
+	<div class="circle postfix"><input type="text" value="100" class="dial"></div>
+	<div class="circle postfix"><input type="text" value="65" class="dial"></div>
+	<div class="circle postfix"><input type="text" value="80" class="dial"></div>
+	<div class="circle postfix"><input type="text" value="65" class="dial"></div>
+	<div class="circle postfix"><input type="text" value="85" class="dial"></div>
 
 <script>
     $(function() {
@@ -61,18 +63,18 @@
 
 <!-- Решение на jQuery-->
 <script>
-	$('.dial').each(function(index){
-	  	var val = $(this).attr('value');
-	  	if (val >= 100) {
-	  		var parent = $(this).parent()
-	  		$(parent).addClass('hundred');
-	  		$(this).addClass('dial_marging');
-	  	} else if (val < 100) {
-	  		var parent = $(this).parent()
-	  		$(parent).removeClass('hundred');
-	  		$(this).removeClass('dial_marging');
-	  } else { return; }
-	});
+	// $('.dial').each(function(index){
+	//   	var val = $(this).attr('value');
+	//   	if (val >= 100) {
+	//   		var parent = $(this).parent()
+	//   		$(parent).addClass('hundred');
+	//   		$(this).addClass('dial_marging-three');
+	//   	} else if (val < 100) {
+	//   		var parent = $(this).parent()
+	//   		$(parent).removeClass('hundred');
+	//   		$(this).removeClass('dial_marging-three');
+	//   } else { return; }
+	// });
 </script>
 
 <!-- Решение на JavaScript -->
@@ -84,11 +86,12 @@
 		if (val >= 100) { 
 			var parent = index.parentNode; //определяем родителя
 			parent.classList.add('hundred'); //добавляем родителю класс
-			index.classList.add('dial_marging'); //добавляем текщ элементу класс
+			index.classList.add('dial_marging-three'); //добавляем текщ элементу класс
+			
 		} else if (val < 100) {
 			var parent = index.parentNode;
 			parent.classList.remove('hundred'); //удаляем у родителя класс
-			index.classList.remove('dial_marging'); //удаляем у текщ элемента класс
+			index.classList.remove('dial_marging-three'); //удаляем у текщ элемента класс
 		} else { return; }
 	});
 </script>
