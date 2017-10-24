@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>random</title>
+	<style type="text/css">
+		.myblock {
+			float: left;
+			margin: 0 10px;
+			border: 1px solid black;
+			padding: 10px;	
+		}
+
+		h3 {
+			margin: 0 0 10px;
+			padding-bottom: 5px;
+			border-bottom: 1px dashed black;
+		}
+		p {
+			margin: 0;
+		}
+		.green {
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<div class="fullRoll myblock">
+		<h3>Весь roll</h3>
+		<div id="fullRoll"></div>
+	</div>
+	<div class="winRoll myblock">
+		<h3>Победный roll</h3>
+		<div id="winRoll"></div>
+	</div>
+	<div class="result myblock">
+		<h3>Итого</h3>
+		<div id="result"></div>
+	</div>
+
+
+	<script>
+		var result = document.getElementById('result');
+		var winRoll = document.getElementById('winRoll');
+		var fullRoll = document.getElementById('fullRoll');
+		var test = new Array();
+		var flag = 0;
+		var s = 0;
+
+		var randArray = new Array();
+		var flagArray = new Array();
+		var winArray = new Array();
+	
+		function f(a, mn, step) {
+
+		
+			result.insertAdjacentHTML("beforeEnd", 'Размер ролла: ' + a +'<br>' );
+			result.insertAdjacentHTML("beforeEnd", 'Риск: ' + mn +'<br>');
+			var _step = step * 2;
+			var max = 100;
+			var min = 0;
+			
+			
+			for (var i=0; i<=a; i++) {
+
+				var r = min + Math.random() * (max - min);
+				var abc = Math.round(r * 100) / 100;
+
+				randArray.push(abc);
+
+				fullRoll.insertAdjacentHTML("beforeEnd", abc +'<br>');
+
+				// 1 проверка
+				if (!step) {
+					if (abc >= mn) {
+						winRoll.insertAdjacentHTML("beforeEnd", '<p class="green">' + flag + ' -> ' + abc +'</p>');
+						flag++;
+						winArray.push(abc);
+					} else if (abc < mn) {
+						if (flag >= 1) {
+							flagArray.push(flag);
+						} else {
+							//console.log('Стандартный случий');
+						}
+						flag = 0;
+					} else {
+						console.log('Error');
+					}
+				// 2 проверка
+				} else {
+					if (s < step)  {
+						console.log('1 - ' + s);
+						if (abc >= mn) {
+							winRoll.insertAdjacentHTML("beforeEnd", '<p class="green">' + flag + ' -> ' + abc +'</p>');
+							flag++;
+
+							winArray.push(abc);
+						} else if (abc < mn) {
+							if (flag >= 1) {
+								flagArray.push(flag);
+							} else {
+								//console.log('Стандартный случий');
+							}
+							flag = 0;
+						} else {
+							console.log('Error');
+						}
+						s++;
+						test.push(s);
+
+						
+					} else if (s >= step && s < _step) {
+						console.log('2 - ' + s);
+						if (abc <= mn) {
+							winRoll.insertAdjacentHTML("beforeEnd", '<p class="green">' + flag + ' -> ' + abc +'</p>');
+							flag++;
+
+							winArray.push(abc);
+						} else if (abc > mn) {
+							if (flag >= 1) {
+								flagArray.push(flag);
+							} 
+							flag = 0;
+						} else {
+							console.log('Error');
+						}
+						s++;
+						test.push(s);
+						
+					} else { s = 0; }
+				}
+
+
+
+			}
+
+
+			flagArray.sort(function(a, b) {
+			  	return a - b;
+			});
+			var maxSeri = flagArray[flagArray.length - 1];
+			result.insertAdjacentHTML("beforeEnd", 'Всего побед: ' + winArray.length + '<br>');
+			result.insertAdjacentHTML("beforeEnd", 'Максимальная серия побед: ' + maxSeri + '<br>');
+			
+			return;
+		}
+		
+		f(10000, 50.00);
+
+
+
+
+
+		console.log(test);
+	</script>
+</body>
+</html>

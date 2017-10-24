@@ -39,3 +39,23 @@ a[href*=".jpg"] - все элементы "a" с указанным значением
 ---пример
 a[href$=".png"]::after { content: '(png)'; }
 <a href="pic.jpg">Изображение</a>
+
+
+---пример миксина на css
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}

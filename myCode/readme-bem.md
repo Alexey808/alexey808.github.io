@@ -62,3 +62,233 @@ blocks/
     button.bemhtml.js
     button.png
 ```
+## Принципы работы с элементами
+
+### Основы
++ Вложенность
+  - Элементы можно вкладывать друг в друга.
+  - Допустима любая вложенность элементов.
++ Принадлежность
+  - Элемент — всегда часть блока и не должен использоваться отдельно от него.
++ Необязательность
+  - Элемент — необязательный компонент блока. Не у всех блоков должны быть элементы.
+
+### Файловая структура
++ Один блок — одна директория.
++ Имена блока и его директории совпадают. Например, блок header — директория header/, блок menu — директория menu/.
++ Реализация блока разделяется на отдельные файлы-технологии. Например, header.css, header.js.
++ Директория блока является корневой для поддиректорий соответствующих ему элементов и модификаторов.
++ Имена директорий элементов начинаются с двойного подчеркивания (__). Например, header/__logo/, menu/__item/.
++ Имена директорий модификаторов начинаются с одинарного подчеркивания (_). Например, header/_fixed/, menu/_theme_islands/.
++ Реализации элементов и модификаторов разделяются на отдельные файлы-технологии. Например, header__input.js, header_theme_islands.css.
+
+**Допускается вложенность элементов в блоке. Это позволяет изменять DOM-структуру блока без внесения правок в коде каждого отдельного элемента.**
+```html
+<div class="block">
+    <div class="block__elem1">
+        <div class="block__elem2">
+            <div class="block__elem3"></div>
+        </div>
+    </div>
+</div>
+```
+
+#Примеры БЭМ
+https://habrahabr.ru/post/203440/
+
+--- Каркас ---
+page
+  page__head-line
+  page__line
+  page__line
+  page__line
+  page__footer
+
+--- Меню ---
+page__line
+  menu
+    link link_menu link_menu_active
+    link link_menu
+    link link_menu
+    link link_menu
+
+--- Форма поиска ---
+page__line
+  head
+    head__logo
+      logo
+        logo__img
+    head__search
+      search
+        search__input
+          input input_search
+        search__input
+          button
+
+--- Слайдер ---
+page__line
+  slider
+    slider__current
+      slide
+        slide__text
+          slide-text
+            slide__header
+            slide__subtext
+        slide__image
+            image image_slider
+    slider__list
+      slide-list
+        slide-list__item
+          slider-case-element
+            slider-case-element__number slider-case-element__number_active
+            slider-case-element__text slider-case-element__text_active
+        slide-list__item
+          slider-case-element
+            slider-case-element__number
+            slider-case-element__text
+        slide-list__item
+          slider-case-element
+            slider-case-element__number
+            slider-case-element__text  
+
+--- Один из блоков контента ---
+page__line 
+  company
+    company__header
+      item-head
+        item-head__img
+        item-head__text
+    company__content
+      content
+        content__img
+        content__text
+    content__link
+      link
+
+
+
+---------------------------------------------------------------------------------------------------
+
+intro
+  intro__logo
+    logo
+      logo__one
+      logo__two
+      logo__three
+      logo__four
+  intro__nav
+    nav
+      nav__rhomb
+        rhomb
+          rhomb__ico
+          rhomb__title
+          rhomb__pic
+  intro__socials
+    socials
+      socials__rhomb
+        rhomb
+          rhomb__ico 
+  intro__scroller
+    scroller
+      scroller__rhomb
+        rhomb
+          rhomb__ico
+  intro__menubars
+    menubars
+      menubars__rhomb
+        rhomb
+          rhomb__ico
+
+---
+
+whatwedo
+  whatwedo__title
+  whatwedo__text
+  whatwedo__rhomb
+    rhomb
+      rhomb__title
+      rhomb__text
+
+---
+
+aboutus
+  aboutus__title
+  aboutus__line-head
+  aboutus__line
+  aboutus__line
+  aboutus__btn
+  aboutus__slider
+    slider
+      slider__list
+        slider__list-item
+        slider__list-item slider__list-item_active
+        slider__list-item
+      slider__btn
+        slider__btn-back
+        slider__btn-next
+      slider__indic
+        slider__indic-dot
+        slider__indic-dot slider__indic-dot_active
+        slider__indic-dot
+
+---
+
+services
+  services__title
+  services__line-head
+  services__item
+    item
+      item__rhomb
+        rhomb
+          rhomb__ico
+      item__title
+      item__text
+
+---
+
+feature
+    feature__title
+    feature__pictures
+      img-ipad
+      img-iphone
+    feature__item
+      itemu
+          item__rhomb
+            rhomb
+                rhomb__ico
+          item__title
+          item__text 
+    feature__button
+
+---
+
+testimonials
+  testimonials__title
+  testimonials__slider
+    slider
+      slider__btn
+        slider__btn-back
+        slider__btn-next
+      slider__list
+        slider__list-item
+          slider__list-item-img
+          slider__list-item-rhomb
+            rhomb
+              rhomb__img
+          slider__list-item-title
+        slider__list-item
+            ...
+        slider__list-item
+            ...
+        slider__list-item
+            ...
+
+
+    
+slider
+  __btn
+    slider-btn
+      __back
+      __next
+  __dots
+  __list

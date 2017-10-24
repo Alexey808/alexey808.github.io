@@ -141,7 +141,7 @@
 	document.getElementsByTagName('input')[0].value = 5; 	//присваивание значение эелементу
 
 --- ПАРС АДРЕСНОЙ СТРОКИ ---
-
+	location.reload();			//обновление страницы
     var url = location;			//document.getElementsByTagName('a')[0];
 
     console.log(
@@ -327,6 +327,8 @@
 	    patch.backgroundColor = '#444';
 	})
 -------
+//Кдик по элементу выбранному по селектору
+	document.querySelector("a.close-reveal-modal").click(); 	 
 
 //Данный пример возвращает список всех div элементов в пределах document имеющих классы "note" или "alert":
 	var matches = document.querySelectorAll("div.note, div.alert");

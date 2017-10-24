@@ -1601,7 +1601,7 @@ justify-content - justify-content: flex-start | flex-end | center | space-betwee
 	font-style -> Определяет начертание шрифта — обычное, курсивное или наклонное.
 		/* font-style: normal | italic | oblique */
 		font-style: italic; /* Курсивное начертание */
-		font-style: oblique /* Наклонный текст */
+		font-style: oblique; /* Наклонный текст */
 
 	font-variant -> Определяет, как нужно представлять строчные буквы — оставить их без модификаций или делать их все прописными уменьшенного размера.
 		/* font-variant: normal | small-caps */
