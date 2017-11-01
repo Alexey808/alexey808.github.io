@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ромб</title>
+	<style type="text/css">
+
+		.block_rhomb {
+			margin: auto;
+			width: 1200px;
+			height: 500px;
+		
+			text-align: center;
+			margin-top: 50px
+		}
+		.rhomb {	
+			background-color: #e6e6e6;
+			border: 3px solid #333;
+			transform: rotate(-45deg);
+			width: 175px;
+			height: 175px;
+			display: inline-block;
+			/*position: relative;*/
+			overflow: hidden;
+		}
+		.block_rhomb .rhomb {
+			margin: 60px 54px;
+		}
+		.rhomb_title {
+			padding: 104px 2px 14px 1px;
+
+
+
+		}
+		.rhomb_text {
+			padding: 92px;
+		}
+		.rhomb_wrap {
+			width: 262.5px; /* 175*3/2=262.5 */
+			height: 262.5px;
+			margin: -43.75px 0 0 -43.75px; /* 262.5-175=87.5/2=43.75px */
+			transform: rotate(45deg);
+			position: relative;
+		
+		
+		}
+
+		
+		/*декаративный ромб*/
+		.d19 {
+			width: 0; height: 0;
+			border: 100px solid transparent;
+			border-bottom-color: #53BA88;
+			position: relative; top: -100px;}
+			.d19:after {
+			content: "";
+			width: 0; height: 0;
+			position: absolute; left: -100px; top: 100px;
+			border: 100px solid transparent;
+			border-top-color: #53BA88;
+		}
+
+		/* r */
+		.r {
+			margin: 50px 0 0 50px;
+			width: 50px;
+			height: 50px;
+			background-color: #6699dd;
+		}
+		.r:after {
+			margin: -1px -26px 0;
+			content: "";
+			width: 50px;
+			height: 50px;
+			border: 1px solid red;
+			position: absolute;
+			transform: rotate(45deg);
+			overflow: hidden;
+			background-color: green;
+
+		}
+	</style>
+</head>
+<body>
+<div class="block_rhomb">
+
+	<div class="rhomb">
+		<div class="rhomb_wrap">
+			<div class="rhomb_title">Title</div>
+			<div class="rhomb_text">Long text</div>
+		</div>
+	</div>	
+	<div class="rhomb">
+		<div class="rhomb_wrap">
+			<div class="rhomb_title">Title</div>
+			<div class="rhomb_text">Long text</div>
+		</div>
+	</div>	
+	<div class="rhomb">
+		<div class="rhomb_wrap">
+			<div class="rhomb_title">Title</div>
+			<div class="rhomb_text">Long text</div>
+		</div>
+	</div>	
+	<div class="rhomb">
+		<div class="rhomb_wrap">
+			<div class="rhomb_title">Title</div>
+			<div class="rhomb_text">Long text</div>
+		</div>
+	</div>
+
+
+<div class="d19"></div>
+<hr>
+	<div class="r"></div>
+
+</div>
+</body>
+</html>
+
+

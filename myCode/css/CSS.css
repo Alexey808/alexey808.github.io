@@ -2,6 +2,12 @@
 .myclass[style] {
 	color: red !important;
 }
+
+
+
+object-fit - Управляет соотношением сторон заменяемых элементов, таких как <img> и <video>.
+	object-fit: fill | contain | cover | none
+
 ---
 WebReference.ru.
 http://uroki-css.ru/cssref/pr_gen_content.php
