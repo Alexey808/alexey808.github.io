@@ -1,0 +1,30 @@
+C:\Users\username>npm install -g babel
+C:\Users\username>npm install -g babel-cli
+C:\Users\username\Desktop>mkdir reactApp
+C:\Users\username\Desktop\reactApp>npm init
+C:\Users\username>npm install webpack --save
+C:\Users\username>npm install webpack-dev-server --save
+C:\Users\username\Desktop\reactApp>npm install react --save
+C:\Users\username\Desktop\reactApp>npm install react-dom --save
+C:\Users\username\Desktop\reactApp>npm install babel-core
+C:\Users\username\Desktop\reactApp>npm install babel-loader
+C:\Users\username\Desktop\reactApp>npm install babel-preset-react
+C:\Users\username\Desktop\reactApp>npm install babel-preset-es2015
+
+
+
+---
+//!имена HTML-тегов пишутся всегда строчными буквами, 
+//!React компоненты начинаются с заглавной.
+//!Встроенные стили вотТакВот
+
+
+
+
+
+
+
+
+
+
+
