@@ -1,0 +1,299 @@
+>     at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>set NODE_PATH = .node server.js
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>set NODE_PATH = .node server.js
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>set NODE_PATH = ".node server.js"
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>set NODE_PATH = c:\pr\nodejs\start\server.js
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>set NODE_PATH = node c:\pr\nodejs\start\server.js
+
+c:\pr\nodejs\start>set NODE_PATH = .node c:\pr\nodejs\start\server.js
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\user\index.js:1:77)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\user\index.js:1:77)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module '/db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module '/db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>ls
+"ls" не €вл€етс€ внутренней или внешней
+командой, исполн€емой программой или пакетным файлом.
+
+c:\pr\nodejs\start>node server.js
+module.js:472
+    throw err;
+    ^
+
+Error: Cannot find module 'db'
+    at Function.Module._resolveFilename (module.js:470:15)
+    at Function.Module._load (module.js:418:25)
+    at Module.require (module.js:498:17)
+    at require (internal/module.js:20:19)
+    at Object.<anonymous> (c:\pr\nodejs\start\server.js:2:10)
+    at Module._compile (module.js:571:32)
+    at Object.Module._extensions..js (module.js:580:10)
+    at Module.load (module.js:488:32)
+    at tryModuleLoad (module.js:447:12)
+    at Function.Module._load (module.js:439:3)
+
+c:\pr\nodejs\start>node --inspect
+Debugger listening on port 9229.
+Warning: This is an experimental feature and could change at any time.
+To start debugging, open the following URL in Chrome:
+    chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=tr
+ue&ws=127.0.0.1:9229/6ed31f53-3277-4e13-870b-cce60fb094a0
+>
+>
+(To exit, press ^C again or type .exit)
+>
+
+c:\pr\nodejs\start>node --inspect > nodejs.txt
+Debugger listening on port 9229.
+Warning: This is an experimental feature and could change at any time.
+To start debugging, open the following URL in Chrome:
+    chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=tr
+ue&ws=127.0.0.1:9229/29c1931a-7f09-436e-b77a-109414ab92ee
+^C
+c:\pr\nodejs\start>
+
+c:\pr\nodejs\start>node
+>
+(To exit, press ^C again or type .exit)
+>
+
+c:\pr\nodejs\start>node > n.txt
+1+1
+2
+^C
+c:\pr\nodejs\start>node > node --inspect > nodejs.txt
+Debugger listening on port 9229.
+Warning: This is an experimental feature and could change at any time.
+To start debugging, open the following URL in Chrome:
+    chrome-devtools://devtools/bundled/inspector.html?experiments=true&v8only=tr
+ue&ws=127.0.0.1:9229/927d3d25-b485-4a72-960d-e85cd03ffc78

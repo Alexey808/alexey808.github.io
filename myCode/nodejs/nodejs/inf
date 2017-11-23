@@ -1,0 +1,229 @@
+###  Команды ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	node index.js //простой запуск
+	node debug index.js //примитивная отладка
+	node --debug index.js //даёт порт для отладки в других утилитах
+	node --debug-brk index.js //приостанавливает и даёт порт для отладки для других утилит
+	NODE_DEBUG="http net" node server.js //глубокая встроенная отладка для linux
+	set NODE_DEBUG="http net" && node server.js //глубокая встроенная отладка для windows
+	supervisor index.js //online редактирование
+
+
+	Для отладки в Chrome нужно: 
+		1) node --debug index.js
+		2) node-inspector //должен быть установлен глобально
+		3) в браузере вводим полученные А.Й.П.И:port
+
+### Other ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	## Заметки
+		!встроенный модуль claster запуск js в режиме множества процессов
+
+	## NODE_PATH добовление путей поиска (не реком им пользоватся)
+		//выполнив который можно к примеру не указывать путь до папки бд, а просто написать её название в require
+		set NODE_PATH=. node server.js 	//windows
+		NODE_PATH=. node server.js 		//mac и вроде linux
+
+### Reference ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	## Server
+
+		# Class: http.IncomingMessage
+		// 1 параметор обработчика событий (входящий), у меня он отмечен как "req"
+		// https://nodejs.org/api/http.html
+		
+		Event: 'aborted'
+		Event: 'close'
+		message.destroy([error])
+		message.headers
+		message.httpVersion
+		message.method
+		message.rawHeaders
+		message.rawTrailers
+		message.setTimeout(msecs, callback)
+		message.socket
+		message.statusCode
+		message.statusMessage
+		message.trailers
+		message.url
+
+		# Class: http.ServerResponse
+		// 2 параметор обработчика событий (исходящий), у меня он отмечен как "res"	
+		// https://nodejs.org/api/http.html
+		
+		Event: 'close'
+		Event: 'finish'
+		response.addTrailers(headers)
+		response.end([data][, encoding][, callback])
+		response.finished
+		response.getHeader(name)
+		response.getHeaderNames()
+		response.getHeaders()
+		response.hasHeader(name)
+		response.headersSent
+		response.removeHeader(name) - удаление заголовка
+		response.sendDate
+		response.setHeader(name, value) - установка заголовка, отправка с ближайшей записью в res.end().
+		response.setTimeout(msecs, callback)
+		response.statusCode
+		response.statusMessage
+		response.write(chunk[, encoding][, callback])
+		response.writeContinue()
+		response.writeHead(statusCode[, statusMessage][, headers]) - явная установка заголовка, пишется тут-же, не ожидая ближайшей записи.
+
+	## Timers
+	Class: Immediate
+	Class: Timeout
+	timeout.ref() - помечает как главный модуль, исп редко. Противоположный unref.
+	timeout.unref() - помечает как второстепенный модуль. Противоположный ref.
+	Scheduling Timers
+	setImmediate(callback[, ...args])
+	setInterval(callback, delay[, ...args])
+	setTimeout(callback, delay[, ...args])
+	Cancelling Timers
+	clearImmediate(immediate)
+	clearInterval(timeout)
+	clearTimeout(timeout)
+
+### Example ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	--- Модули | Информацию о модуле -------------------------------------------------------------+
+		console.log(module);
+
+	---	Модули | Отладка/логирование: ------------------------------------------------------------+
+		debug - примитивная отладка
+		winston - со своим обработчиком
+		NODE_DEBUG - глубокая отладка
+
+	--- Модули | Подключение модулей [require, export, global] -----------------------------------+
+		/* module.exports = exports = this */
+		//module.js
+			function User(name) {...}
+
+			exports.user = User; 			//1 - экспортируем
+			global.user = User; 			//2 - делаем глобальной
+			(Путь: user/index.js)			//3 - дирректория
+			module.exports = User;			//4 - экспортируем, модуль-функция(реком)
+
+		//server.js
+			var user = require('./user'); 	//1 - при экспорте, формат можно не указывать. Последов поиска (js/json/dir)
+			require('./user');				//2 - при глобальном
+			var user = require('./user');	//3 - подключаем дерректорию user и берётся модуль index.js
+			var User = require('./user');	//4 - (реком)
+
+			var name = new user.User("Имя");//1 - пример исп
+			var name = new User("Имя");		//2 - пример исп
+			var name = new User("Имя");		//3 - пример исп
+			var name = new User("Имя");		//4 - (реком)
+
+	--- Модули | Универсальность модуля ----------------------------------------------------------+
+		/* Универсальный модули, т.е. является как и запускным так и вспомогательным*/
+		//--- server.js -------------------------------------------------
+			function run() {
+				console.info("run() started!");
+			}
+			//если server.js исп как модуль то экспортируем функц run
+			if (module.parent) { 
+				exports.run = run;
+			} 
+			//иначе запускаем run()
+			else { 	
+				run();
+			}
+		//--- app.js ----------------------------------------------------
+			var server = require('./server');
+			server.run(); //запускаем run()
+
+	--- Модули | Полезные модули -----------------------------------------------------------------+
+
+		//util удобно выводит объекты
+			var util = require('util'); 
+
+			//метод inspect, вид
+				console.log(util.inspect(obj)); //строчное представление
+				console.log(obj); //или так
+			//метод format, деконструкция
+				var str = util.format('My %s %d %j', 'string', '...', {test:'obj'});
+				console.log(str); 
+			//метод ingerits, наследования
+				util.inherites(Rabbit, Animal); //где раббит наследует методы анимал
+
+		//mime определения типа файла по рассширению
+			var mime = require('mime');
+
+	--- Timers | process.nextTick(collback) ------------------------------------------------------+
+
+		/* метод сработает до того как придёт след событие */
+		/* Применение: часто применяемый. */
+
+		var http = require('http');
+
+		http.createServer(function (req, res) {
+
+			process.nextTick(function() { 			//process.nextTick
+				req.on('readable', function() {
+					//сработает на ближайших данных
+				})
+			});
+
+		}).listen(8000);
+
+	--- Timers | setImmediate(function run()) ----------------------------------------------------+
+
+		/* метщд сработает на след итерации цикла после обраб событий */
+
+		/* Применение:
+		1) если хочется сделать асинхронно и не хотим тормозить событийный цикл
+		2) если надо разбить сложные задачи на части */
+
+		var http = require('http');
+
+		http.createServer(function(req, res) {
+
+			var part = 0;
+
+			setInterval(function run() { 			//setInterval
+				heavyCalc(part++);
+				if (notFinished) setImmediate(run);
+			});
+
+		}).listen(8000);
+	
+	--- FileSystem | fs.writeFile(file, data[, options], callback) -------------------------------+
+
+		var fs = require('fs');
+		//запишем в файл
+		fs.writeFile('file.tmp', 'data', function(err) {
+			if (err) throw err;
+			//переименовываем файл
+			fs.rename('file.tmp', 'new.tmp', function(err) {
+				if (err) throw err;
+				//удаляем файл
+				fs.unlink('new.tmp', function(err) {
+					if (err) throw err;
+				})
+			})
+		})
+	
+	--- FileSystem | fs.lstat(path, callback) ----------------------------------------------------+
+
+		var fs = require('fs');
+		fs.stat(__filename, function(err, stats) {
+			console.log(stats.isFile()); //true файл был найден
+			console.log(stats); //инф о параметре
+		});
+	
+	--- FileSystem | fs.readFile(file[, options], callback) --------------------------------------+
+
+		var fs = require('fs');
+		fs.readFile(__filename, function(err, data) {
+			if (err) { 
+				console.error(err); 
+			} else {
+				console.log(data); //текущий фалй в бинарном виде
+				console.log(data.toString()); // текущий файл в UTF8
+			}
+		});
+
+
+file.pipe(process.stdout);

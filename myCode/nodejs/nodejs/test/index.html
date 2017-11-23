@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+
+</head>
+<body class='container'>
+	<p class='lead'>Добро пожаловать в чат.</p>
+	
+	<form id='publish' class='from-inline'>
+		<input type='text' name='message'/>
+		<input type='submit' class='btn btn-primary' value='Отправить'/>
+
+	</form>
+
+	<ul id='messages'></ul>
+	
+	<!-- код на подписку сообщений сервера -->
+	<script>
+	//отправка сообщений
+		publish.onsubmit = function() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/publish', true);
+			xhr.send(JSON.stringify({message: this.elements.message.value}));
+			this.elements.message.value = "";
+			return false;
+		};
+		subscribe();
+
+		function subscribe() {
+			var xhr = new XMLHttpRequest();
+			//получаем данные с этого url
+			xhr.open('GET', '/subscribe', true);
+			//когда ответ получен  
+			xhr.onload = function() {
+				var li = document.createElement('li');
+				li.textContent = this. responseText;
+				messages.appendChild(li);
+
+				subscribe();
+			};
+
+			//исключения
+			xhr.onerror = xhr.onabort = function() {
+				setTimeout(subscribe, 500); //с небольшой задержкой, чтобы не завалить сервер
+			};
+			xhr.send("");
+		}
+		
+	</script>
+
+</body>
+</html>
