@@ -1,0 +1,17 @@
+{
+  "name": "scrollbar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scroll.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexey",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.2",
+    "less": "^2.7.3"
+  }
+}

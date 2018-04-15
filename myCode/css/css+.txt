@@ -8,6 +8,9 @@ selector.class - на класс внутри селектора
 h4 + li - первый элемент li в h4
 h4 ~ li - до конца родительского блока li в элементе h4
 
+div[class^="my"] //начинается с
+div[class$="Class"] //заканчивается определённым значением
+div[class*="yClas"] //совпадение в любом месте
 
 псевдоклассы ссылок
 :link - все ссылки которые небыли нажаты
@@ -59,3 +62,62 @@ html[xmlns] .clearfix {
 * html .clearfix {
   height: 1%;
 }
+
+--- иконка авторского права
+.footer__ownership:before {
+    content: '\00A9';
+}
+
+--- не применять margin к последнему элементу
+.elem__point:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+--- фоновая картинка и сдвиг в верх на 45px
+background: url("../img/1st-screen-1920x1080-dark.jpg") no-repeat;
+background-position-y: -45px;
+
+--- прилипающее меню, скользит по высоте родительского блока
+font-size: 12px;
+position: sticky;
+top: -50px;
+
+--- линейный гардиент элементу
+.elem {
+    background: url(demo.png) no-repeat 0 0 transparent;
+    height: 37px;
+    overflow: hidden;
+    position: relative;
+    width: 95px;
+}
+
+.elem::after {
+    background: transparent;
+    background: -moz-linear-gradient(top, rgba(255, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 0, 0, 0.8)), color-stop(100%, rgba(0, 0, 0, 0.1)));
+    background: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: -o-linear-gradient(top, rgba(255, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 100%);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+---
+.footer-menu__link:not(:first-child) {}
+
+.footer-menu {
+    &__link {
+        &:not(:first-child) {}
+    }
+}
+
+ <div class="footer-menu">
+                    <a href="#" class="footer-menu__link">УСЛУГИ</a>
+                    <a href="#" class="footer-menu__link">ГАЛЕРЕЯ РАБОТ</a>
+

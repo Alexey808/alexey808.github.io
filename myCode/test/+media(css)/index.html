@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@media</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+		.block { 
+			color: red; 
+			display: flex;
+		}
+		
+
+		@media screen and (min-width: 993px) {
+		 	/* HD Monitor (стационарный компьютер) */
+		 	body {background-color: #88c8ff;}
+		 	.block:after{content:'От 993px и больше';}
+		 	.block { color: #00ff16; }
+		}
+
+		@media screen and (max-width: 992px) {
+		 	/* Notebook (ноутбук) */
+		 	body {background-color: green;}
+		 	.block:after{content:'max-width: 992px';}
+		 	.block { color: #5fffe1; }
+		 	.block {
+		 		display: block;
+		 	}
+		}
+
+		@media screen and (max-width: 768px) {
+		 	/* Tablet (планшет) */
+		 	body {background-color: orange;}
+		 	.block:after{content:'max-width: 768px';}
+		 	.block { color: #2919a0; }
+		}
+
+		@media screen and (max-width: 520px) {
+		 	/* Smapthone (мобильный телефон) */
+		 	body {background-color: yellow;}
+		 	.block:after{content:'max-width: 520px';}
+		 	.block { color: #ff8143;; }
+		}	
+</style>
+</head>
+<body>
+	<div class="block"></div>
+</body>
+</html>

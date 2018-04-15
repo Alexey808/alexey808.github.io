@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<style type="text/css">
+
+  @keyframes smoothTransitionColor {
+    from {
+        background-color: #eee; 
+    } to {
+        background-color: #333; 
+    }
+  }
+		.myblock {
+			width: 300px;
+			height: 100px;
+			background-color: #eee;
+			margin: 1px;
+		}
+		.myblock .an {
+			/* проста для выбора элемента */
+		}
+		.an.an--active {
+			/* прописываем анимацию */
+		  animation-name: smoothTransitionColor;
+		  animation-duration: 2s;
+		  animation-fill-mode: forwards;
+		}
+
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+	<div class="myblock an">text</div>
+
+	<script>
+
+
+var isScrolling = false;
+
+window.addEventListener("scroll", throttleScroll, false);
+
+function throttleScroll(e) {
+  if (isScrolling == false) {
+    window.requestAnimationFrame(function() {
+      scrolling(e);
+      isScrolling = false;
+    });
+  }
+  isScrolling = true;
+}
+
+document.addEventListener("DOMContentLoaded", scrolling, false);
+
+//--- определяем массив элементов
+var item = document.querySelectorAll('.an');
+var listItems = Array.prototype.slice.call(item);
+
+//--- циклом пропускаем через функцию обнаружения
+function scrolling(e) {
+	for (var i = 0; i < listItems.length; i++) {
+	    
+	    var listItem = listItems[i];
+	    console.log(listItem[i]);
+	    if (isPartiallyVisible(listItem)) {
+	        listItem.classList.add("an--active");
+	    } else {
+	        listItem.classList.remove("an--active");
+	    }
+	}
+}
+
+
+//функция частично видимых элементов
+function isPartiallyVisible(el) {
+    var elementBoundary = el.getBoundingClientRect();
+    var top = elementBoundary.top;
+    var bottom = elementBoundary.bottom;
+    var height = elementBoundary.height;
+    return ((top + height >= 0) && (height + window.innerHeight >= bottom));
+}
+
+//функция полностью видимых элементов
+function isFullyVisible(el) {
+    var elementBoundary = el.getBoundingClientRect();
+    var top = elementBoundary.top;
+    var bottom = elementBoundary.bottom;
+    return ((top >= 0) && (bottom <= window.innerHeight));
+}
+
+
+	</script>
+
+</body>
+</html>

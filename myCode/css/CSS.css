@@ -78,7 +78,7 @@ justify-content - justify-content: flex-start | flex-end | center | space-betwee
 		border-left-color - Задаёт цвет границы слева от элемента.
 		border-left-style - Устанавливает стиль границы слева от элемента.
 		border-left-width - Устанавливает толщину границы слева от элемента.
-	border-radius - Устанавливает радиус скругления уголков рамки.
+		border-radius - Устанавливает радиус скругления уголков рамки.
 		border-right - Позволяет одновременно установить толщину, стиль и цвет правой границы элемента.
 		border-right-color - Задаёт цвет границы справа от элемента.
 		border-right-style - Устанавливает стиль границы справа от элемента.

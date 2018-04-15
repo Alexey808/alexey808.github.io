@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>eng</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<style type="text/css">
+		table {
+			border: 1px solid black;
+			width: 100%;
+			font-family: cursive;
+			font-size: 15px;
+			color: #333
+		}
+		td {
+			background-color: #eee;
+			padding-left: 2px;
+			/*width: 50%;*/
+		}
+		.two {
+			color: rgba(238, 238, 238, 0);
+		}
+		.two.show {
+			cursor: pointer;
+			color: #222;
+
+		  	-webkit-backface-visibility: visible !important;
+		  	backface-visibility: visible !important;
+		  	-webkit-animation-name: flipInX;
+		  	animation-name: flipInX;
+		  	animation-duration: 0.3s;
+		}
+	
+
+		@keyframes flipInX {
+		  from {
+		    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		    -webkit-animation-timing-function: ease-in;
+		    animation-timing-function: ease-in;
+		    opacity: 0;
+		  }
+
+		  40% {
+		    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		    -webkit-animation-timing-function: ease-in;
+		    animation-timing-function: ease-in;
+		  }
+
+		  60% {
+		    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+		    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+		    opacity: 1;
+		  }
+
+		  80% {
+		    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+		    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+		  }
+
+		  to {
+		    -webkit-transform: perspective(400px);
+		    transform: perspective(400px);
+		  }
+		}
+		
+		.btn {
+			margin-bottom: 5px;
+			width: 100%;
+			line-height: 22px;
+		}
+	
+	</style>
+</head>
+<body>
+
+	<button class='btn' onclick="showAll()">show all</button>
+	<div id="test"></div>
+	<div id="main"></div>
+	<script type="text/javascript" src="list.js"></script>
+	<script>
+
+
+
+
+
+
+
+var list = l.split('	');
+var ta = document.createElement('table');
+
+for (let i = 0; i < list.length; i++) {
+	let tr = document.createElement('tr');
+	tr.insertAdjacentHTML('beforeEnd', '<td class="one"></td><td class="two"></td>');
+	ta.appendChild(tr);
+}
+
+document.getElementById('main').appendChild(ta);
+
+	
+var one = document.querySelectorAll('.one');
+var two = document.querySelectorAll('.two');
+
+for (let i = 0; i < one.length; i++) {
+	let sp = list[i].split(' - ');
+	one[i].insertAdjacentHTML('beforeEnd',sp[0]);
+	two[i].insertAdjacentHTML('beforeEnd',sp[1]);
+	two[i].addEventListener('click', () => {
+		two[i].classList.add('show');
+	});
+}
+
+function showAll() {
+	document.querySelector(".btn").innerHTML = two.length;; 	
+
+	for (let i=0; i<two.length; i++) {
+		two[i].classList.add('show');
+	}
+}
+
+</script>
+</body>
+</html>

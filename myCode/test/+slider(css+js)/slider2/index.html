@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
+</head>
+<body>
+<div class="content">
+    <div class="content-container">
+
+<!-- about -->
+<section class="about">
+    <div class="aboutslider">
+        <input type="radio" name="aboutslider-point" class="aboutslider__point" id="aboutslider__point1" checked="checked" />
+       
+        <input type="radio" name="aboutslider-point" class="aboutslider__point" id="aboutslider__point2"/>
+        <input type="radio" name="aboutslider-point" class="aboutslider__point" id="aboutslider__point3"/>
+
+        <div class="aboutslider__wrap-btn aboutslider__wrap-btn--left an">
+            <button id="arrow-left" class="aboutslider__btn" onclick="active_arrow('.aboutslider__point', 'left')">
+                <img src="img/arrow-1st-screen-left.svg" class="aboutslider__btn-ico" alt="icon">
+            </button>
+        </div>
+        <div class="aboutslider__wrap-btn aboutslider__wrap-btn--right an">
+            <button id="arrow-right" class="aboutslider__btn" onclick="test(this)">
+                <img src="img/arrow-1st-screen-right.svg" class="aboutslider__btn-ico" alt="icon">
+            </button>
+        </div>
+        <div class="aboutslider__pages">
+            <section class="aboutslider__page aboutslider__point1">
+                <h2 class="aboutslider__page-tit an">Заголовок 1</h2>
+                <div class="aboutslider__page-ctn an">Контент это содержимое, информационное наполнение сайта, издания системы управления контентом представляют собой программное обеспечение, устанавливаемое на веб-сервере и предназначенное для создания и обслуживания динамического сайта.</div>
+            </section>
+            <section class="aboutslider__page aboutslider__point2">
+                <h2 class="aboutslider__page-tit an">Заголовок 2</h2>
+                <div class="aboutslider__page-ctn an">Контент это содержимое, информационное наполнение сайта, издания системы управления контентом представляют собой программное обеспечение, устанавливаемое на веб-сервере и предназначенное для создания и обслуживания динамического сайта..</div>
+            </section>
+            <section class="aboutslider__page aboutslider__point3">
+                <h2 class="aboutslider__page-tit an">Заголовок 3</h2>
+                <div class="aboutslider__page-ctn an">Контент это содержимое, информационное наполнение сайта, издания системы управления контентом представляют собой программное обеспечение, устанавливаемое на веб-сервере и предназначенное для создания и обслуживания динамического сайта...</div>
+            </section>
+        </div>
+
+        <div class="aboutslider__ind an">
+            <label class="aboutslider__label an" for="aboutslider__point1"></label>
+            <label class="aboutslider__label an" for="aboutslider__point2"></label>
+            <label class="aboutslider__label an" for="aboutslider__point3"></label>
+        </div>
+
+    </div>
+</section>
+<!-- /about -->
+
+    </div>
+</div>
+
+<script>
+
+
+var newslider = new slider('.aboutslider');
+
+
+function slider(slider_name) {
+    var elem = document.querySelector(slider_name);
+    var checked;
+
+    if (elem) {
+        
+        this.getDots = () => {
+            let _input = elem.getElementsByTagName('input');
+            // console.log(_input.length);
+            let _label = elem.getElementsByTagName('label');
+            let _dots = [_input, _label];
+            // dots.push(_input, _label);
+            for (let i=0; i<_input.length; i++) {
+                if (_input[i].getAttribute('checked')) {
+                    checked = i;
+                    // console.log(_input[i]);
+                    // console.log(_label[i])
+                }
+            }
+            // console.log(checked);
+            return _dots;
+        }
+        this.getArrows = () => {
+            /*Перебираем все кнопки и ищем id со словом arrow*/
+            let _arrows = elem.getElementsByTagName('button');
+            for (let i=0; i<_arrows.length; i++) {
+                let btn = _arrows[i].getAttribute('id');
+                if (~btn.indexOf("arrow")) {
+                    return _arrows;
+                } else {
+                    console.log('Ошибка this.getArrows');
+                }
+            }
+        }
+        this.getPages = () => {
+            /*Перебираем все section и ищем в классах слово page*/
+            let _pages = elem.getElementsByTagName('section');
+            for (let i=0; i<_pages.length; i++) {
+                let _page = _pages[i].getAttribute('class');
+                if(~_page.indexOf('page')){
+                    return _pages;
+                }
+            }
+        }
+
+        this.click = () => {
+           
+            let d = this.getDots();
+            let a = this.getArrows();
+            let p = this.getPages();
+         
+            // console.log(d);
+            // console.log(a);
+            // console.log(p);
+ 
+        
+          
+            // console.log(d[0][checked]);
+            // console.log(d[1][checked]);
+            // console.log(p[checked]);
+        
+
+
+            for (let i=0; i<p.length; i++) {
+                p[i].style.opacity = '0'; //page
+                p[i].style.opacity = '0'; //page
+                p[i].style.scale = '0';
+                if(d[0][i].checked || i == checked ) {
+                    console.log(i);
+                    p[i].style.opacity = '1'; //page
+                    p[i].style.zindex = '1'; //page
+                    p[i].style.scale = '1';
+                } else {
+                    // p[0].style.opacity = '1'; //page
+                    // p[0].style.zindex = '1'; //page
+                    // p[0].style.scale = '1';
+
+
+                }
+
+                //if (i == checked) {
+                    //показать слайд с номером checked
+                    // console.log(d[0][checked]);
+                    // d[0][checked].style.opacity = '1'; //input
+                    // d[1][checked].style.opacity = '1'; //label
+                    // p[checked].style.opacity = '1'; //page
+
+                //} else if (i != checked) {
+                    
+                    // d[0][i].style.opacity = '0'; //input
+                    // d[1][i].style.opacity = '0'; //label
+                    // p[i].style.opacity = '0'; //page
+                //}
+            }
+
+        }
+     
+            
+      
+
+        
+    } else {
+        console.log("Элемент не найден");
+    }
+   
+
+
+    
+}
+
+
+
+// console.log(newslider.getDots());
+// console.log(newslider.getArrows());
+// console.log(newslider.getPages());
+console.log(newslider.click());
+
+//--------------------------------------------
+// function active_arrow(arrow, page) {
+
+//     let run = (a) => { return a;}
+//     let checked = (b) => { return document.querySelector(b).hasAttribute('checked'); }
+//     let setChecked = (c) => { /**/ }
+
+   
+//     arrow = document.querySelector(arrow);
+
+//     let list = document.querySelectorAll(page);
+//     let arrlist = Array.prototype.slice.call(list);
+//     console.log(list);
+//     console.log(arrlist);
+  
+//     let s = arrow.getAttribute('class');
+  
+//     if (~s.indexOf("left")) {
+//         console.log('yes');
+//         run(11);
+//     } else if (~s.indexOf("right")) {
+//         console.log('no');
+//     } else {
+//         console.log('error in active_arrow(arrow, page)');
+//     }
+
+
+//     arrlist.forEach(function(index, array, currentValue) {
+//         console.log(index);
+//     })
+    
+    
+// }   
+// active_arrow('.aboutslider__wrap-btn--left', '.aboutslider__page-ctn');
+
+
+
+
+</script>
+
+
+
+    <script>
+// for (var prop in slider) {
+//   if (typeof user[prop] == 'function') {
+//     user[prop] = user[prop].bind(user);
+//   }
+// }
+    </script>
+
+
+
+</body>
+</html>

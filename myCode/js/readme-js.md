@@ -30,4 +30,26 @@ document.querySelector('.btn').addEventListener('click', function() {
   document.querySelector('.btn_top').classList.toggle('btn_down');
 }, false);
 ```
----
+
+
+# Подключение несколько файлов в html
+https://toster.ru/q/220674
+```js
+function b(){
+    var mass = ['css/bootstrap.min.css','css/font-awesome.min.css','style.css','css/media.css',];
+    for(var i=0;i<mass.length;i++){
+        var a=document.createElement("link");
+        a.rel="stylesheet";
+        a.href=mass[i];
+        document.getElementsByTagName("head")[0].appendChild(a)
+    }
+}
+```
+
+# Получить текст всей страницы
+https://nagibaka.ru/js-imacros-lessons-for-beginners/regular-expressions-base-lesson-6/
+```js
+var str = window.document.querySelector('body').textContent;
+var result = /\d{1,11}/igm.exec(str);
+window.console.log(result[1]);
+```

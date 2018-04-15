@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- https://habrahabr.ru/company/netcracker/blog/277433/ -->
+	<title>vertical alignment</title>
+	<style type="text/css">
+		.color-a { background-color: #ffffcd; }
+		.color-b { background-color: #ffcdcd; }
+
+
+		/*Через флекс*/
+		.outer {
+		    display: flex;
+		    width: 200px;
+		    height: 200px;
+		}
+		.inner {
+		    width: 100px;
+		    height: 100px;
+		    margin: auto;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="outer color-a">
+	    <div class="inner color-b"></div>
+	</div>
+
+</body>
+</html>

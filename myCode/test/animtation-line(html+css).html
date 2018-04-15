@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.wrap {
+			
+			margin-bottom: 10px;
+		}
+		body {
+			margin: 30px;
+		}
+		.block{
+		
+			width: 300px;
+			height: 50px;
+			
+			margin: 2px;
+			border: 1px solid #333;
+		}
+
+		.block {background-color: #95e28f;}
+
+
+
+
+
+    .an1 {animation: anim 1s ease 0s forwards;}
+    .an2 {animation: anim 1s ease .2s forwards;}
+    .an3 {animation: anim 1s ease .4s forwards;}
+
+    @keyframes anim {
+      from {
+      	opacity: 0;
+        transform: translate(0, 0);
+      }
+
+      to {
+      	opacity: 1;
+        transform: translate(100%, 0);
+      }
+    }
+
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="block an1">line</div>
+		<div class="block an2">line</div>
+		<div class="block an3">line</div>
+	</div>
+
+
+</body>
+</html>

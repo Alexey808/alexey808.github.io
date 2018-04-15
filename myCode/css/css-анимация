@@ -120,3 +120,11 @@
 		transition-timing-function: step-end; /* Как таковой анимации нет. Стилевые свойства находятся в начальном значении заданное время, затем сразу же принимают конечное значение. */
 		transition-timing-function: steps(<число>, start | end) /* Ступенчатая функция, имеющая заданное число шагов. start — задаёт полунепрерывную снизу функцию. end — задаёт полунепрерывную сверху функцию.*/
 		transition-timing-function: cubic-bezier; /* Задаёт функцию движения в виде кривой Безье */
+
+
+
+
+    animation-name: fadeInTop;
+    animation-duration: 2s; /* Продолжительность анимации */
+    animation-delay: 1s; /* Задержка */
+    animation-fill-mode: forwards;

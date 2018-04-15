@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@media</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		* { margin: 0px; }
+		.block { 
+			color: red; 
+			z-index: 0;
+			width: 100vw;
+			height: 100vh;
+		}
+		
+		
+		@media screen and (min-width: 981px) {
+			body { background-color: #333; }
+		}
+
+
+		@media screen and (max-width: 980px) and (min-width: 521px) {
+		 	.block:after{content:'max-width: 768px';}
+		 	.block {
+		 		background-color: orange;
+				color: #2919a0;
+				z-index: 1;
+				
+		 	}
+
+		}
+
+		@media screen and (max-width: 520px) {
+		 	.block:after{content:'max-width: 520px';}
+		 	.block { 
+				background-color: yellow;
+		 		color: #ff8143; 
+
+		 	}
+		}
+
+
+</style>
+</head>
+<body>
+	<div class="block"></div>
+</body>
+</html>

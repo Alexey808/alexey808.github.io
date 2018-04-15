@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>test2</title>
+	<style type="text/css">
+		.button {
+			width: 400px;
+			border-radius: 3px;
+			text-align: center;
+			font-size: 16pt;
+			padding: 10px;
+			cursor: pointer
+		}
+		.popup {
+display: block;
+		}
+		.popup_visible {
+	display: none;
+
+		}
+	</style>
+</head>
+ 
+
+<body>
+
+<div class="button popup">
+	Добавить этой кнопке класс "btn_down"
+</div>
+
+<script>
+document.querySelector('.button').addEventListener('click', function() {
+    document.querySelector('.popup').classList.toggle('popup_visible');
+}, false);
+
+block('button').click(function() {
+    block('popup').toggleMod('visible');
+});
+</script>
+</body>
+ 
+</html>

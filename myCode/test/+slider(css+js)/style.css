@@ -1,0 +1,72 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #333;
+}
+
+.slider-container {
+	height: 350px;
+	margin: 100px auto 0;
+	position: relative;
+	width: 700px;
+}
+
+.slider__box {
+	background-color: #eee;
+	height: inherit;
+	overflow: hidden;
+	position: relative;
+	width: inherit;
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	-o-box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+	padding: 10px 40px; /*боковые кнопки + необходимый отступ*/
+}
+
+.slider__slides {
+	display: none;
+}
+.slider__slides.slider__slides--active {
+	display: block;
+}
+
+.slider__btn {
+	height: 100%;
+	width: 30px;
+	position: absolute;
+	top: 0;
+	border: none;
+}
+.slider__btn--left {
+	left: 0;
+}
+.slider__btn--right {
+	right: 0;
+}
+
+/*гардиенты*/
+.slider--fon {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#deefff+0,98bede+100 */
+background: #deefff; /* Old browsers */
+background: -moz-linear-gradient(top, #deefff 0%, #98bede 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #deefff 0%,#98bede 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #deefff 0%,#98bede 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede',GradientType=0 ); /* IE6-9 */
+}
+
+.--fon {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dfffee+0,98deb8+100 */
+background: #dfffee; /* Old browsers */
+background: -moz-linear-gradient(top, #dfffee 0%, #98deb8 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #dfffee 0%,#98deb8 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #dfffee 0%,#98deb8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dfffee', endColorstr='#98deb8',GradientType=0 ); /* IE6-9 */
+}

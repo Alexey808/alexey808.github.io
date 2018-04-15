@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Мой сайт</title>
+
+    <link rel="stylesheet" href="/csss/FloatFooter.css" />
+
+<style type="text/css">
+    
+        /*-----------------------------------http://habrahabr.ru/post/66805/-----------------------------------------*/
+    html, body, #wrap {height: 99%;}
+    body > #wrap {height: auto; min-height: 100%;}
+    #main {padding-bottom: 150px;}  /* отступ должен быть равен высоте футера */
+    #footer {position: relative;
+    margin-top: -150px; /* отрицательное значение высоты футера */
+    height: 150px;
+    clear:both;}
+    /*----------------------------------------------------*/
+    .clearfix:after {content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;}
+
+    .clearfix {display: inline-block;}
+    /* Hides from IE-mac \*/
+    * html .clearfix { height: 1%;}
+    .clearfix {display: block;}
+    /* End hide from IE-mac */
+    /*----------------------------------------------------------------------------------------------------------*/ 
+
+    #footer
+    {
+        background-color: #ffd800
+    }
+    #wrap {
+        background-color: #267e03;
+    }
+  
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+  <div id="main" class="clearfix">
+
+  </div>
+</div>
+<div id="footer">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+.t-scroll-container { 
+    overflow: hidden !important; /* Прячем прокрутку */
+    position: relative;
+    & > .t-scroll { /* Полоса, по которой будет бегать наш ползунок */
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 12px;
+        background: rgb(243, 247, 254);
+        z-index: 2;
+        button { /* Ползунок, собственно :) */
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 10px;
+            height: 50px;
+            background: #b6b6b6;
+            border-radius: 4px;
+        }
+    }
+}

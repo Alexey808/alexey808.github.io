@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<input class="select_input" id="select_input" readonly="readonly">
+ 
+<select class="select_box" id="category_id" size="1" name="category_id" onchange="document.getElementById ('select_input').value = this.options [this.selectedIndex].text">
+    <option disabled selected></option>
+    <option value="1">Природа</option>
+    <option value="2">Жизнь</option>
+    <option value="3">Природа и жизнь</option>
+</select>
+
+</body>
+</html>
+
+
+<!-- http://www.cyberforum.ru/javascript/thread730474.html -->

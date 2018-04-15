@@ -1,5 +1,7 @@
 # Работа с текстом
 
+word-wrap: break-word; /* Перенос слов */
+
 /* Обрезание и многочие в строке -------------------------------------------------------------- */
 .myline { 
 	width: 100px;				/* ! */
@@ -55,4 +57,4 @@ body {
   height: 1.2em;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
 }
-//https://css-tricks.com/line-clampin/
+/*https://css-tricks.com/line-clampin/*/

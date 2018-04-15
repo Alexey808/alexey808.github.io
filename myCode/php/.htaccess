@@ -1,0 +1,5 @@
+#---Кодировка через htaccess ----------------------------------------
+AddDefaultCharset UTF-8
+
+#---Позволяем подключать в .html файлы .php--------------------------
+AddHandler application/x-httpd-php .php .htm .html
