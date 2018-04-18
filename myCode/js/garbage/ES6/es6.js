@@ -1,5 +1,5 @@
-// ДЕКОРАТОРЫ
-// -------------------------------------------
+//ДЕКОРАТОРЫ
+//-------------------------------------------
 
 function doSomething(name) {
   console.log('Hello, ' + name);
@@ -57,3 +57,9 @@ function superhero(isSuperhero) {
 class MySuperHero {}
 
 console.log(MySuperHero.isSuperhero);      // false
+
+----------------------------------------------------------------
+
+
+
+
