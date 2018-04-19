@@ -1,65 +1,79 @@
-//ДЕКОРАТОРЫ
-//-------------------------------------------
 
-function doSomething(name) {
-  console.log('Hello, ' + name);
-}
 
-function loggingDecorator(wrapped) {
-  return function() {
-    //console.log('Starting');
-    const result = wrapped.apply(this, arguments);
-    //console.log('Finished');
-    return result;
-  }
-}
-
-const wrapped = loggingDecorator(doSomething);
-
-doSomething('NAME');
-wrapped('NAME');
 
 
 // -------------------------------------------
-function work(a) {
-  /*...*/ // work - произвольная функция, один аргумент
-}
 
-function makeLogging(f, log) {
-
-  	return function wrapper(a) {
-      	log.push(a);
-      	return f.call(this, a);
-    }
-  //return wrapper;
-}
-
-var log = [];
-work = makeLogging(work, log);
-
-work(1); // 1
-work(5); // 5
-
-for (var i = 0; i < log.length; i++) {
-  console.log( 'Лог:' + log[i] ); // "Лог:1", затем "Лог:5"
-}
-// -------------------------------------------
-
-function superhero(isSuperhero) {
-  return function (target) {
-    target.isSuperhero = isSuperHero;
-    target.power = 'flight';
-  }
+// function superhero(isSuperhero) {
+//   return function (target) {
+//     target.isSuperhero = isSuperHero;
+//     target.power = 'flight';
+//   }
   
-}
+// }
 
-@superhero(false)
-class MySuperHero {}
+// @superhero(false)
+// class MySuperHero {}
 
-console.log(MySuperHero.isSuperhero);      // false
+// console.log(MySuperHero.isSuperhero);      // false
 
-----------------------------------------------------------------
+//-----------------------------------
 
+//--- Промис --------------------------------------------------------
+	/* Универсальный метод для навешивания обработчиков
+	 * promise.then(onFulfilled, onRejected)
+	 */
 
+	var promise = new Promise(function(resolve, reject) {
 
+		//любоq асинхронный процесс
+	  	setTimeout(() => { 
+	  		resolve("result"); 
+	  	}, 1000);
 
+	  // resolve(результат) при успешном выполнении
+	  // reject(ошибка) при ошибке
+	})
+
+	//Использование
+	// promise.then навешивает обработчики на успешный результат или ошибку
+	promise
+	  	.then(
+	    	result => alert("Fulfilled: " + result), //resolve
+	    	error => alert("Rejected: " + error.message) // Rejected: время вышло!
+	  	);
+
+//--- Промис | Промисификация ---------------------------------------
+	function httpGet(url) {
+
+	  	return new Promise(function(resolve, reject) {
+
+		    var xhr = new XMLHttpRequest();
+		    xhr.open('GET', url, true);
+
+		    xhr.onload = function() {
+		      	if (this.status == 200) {
+		        	resolve(this.response); //*
+		      	} else {
+		        	var error = new Error(this.statusText);
+		        	error.code = this.status;
+		        	reject(error); //*
+		      	}
+		    };
+
+		    xhr.onerror = function() {
+		      	reject(new Error("Network Error")); //*
+		    };
+
+	    	xhr.send();
+	  	});
+	}
+
+	//Использование
+	httpGet("/article/promise/user.json")
+	  	.then(
+	    	response => alert(`Fulfilled: ${response}`),
+	    	error => alert(`Rejected: ${error}`)
+	  	);
+
+// --- Цепочки промисов | Чейнинг(chaining) -------------------------
