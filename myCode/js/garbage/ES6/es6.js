@@ -19,61 +19,117 @@
 
 //-----------------------------------
 
-//--- Промис --------------------------------------------------------
-	/* Универсальный метод для навешивания обработчиков
-	 * promise.then(onFulfilled, onRejected)
-	 */
+// async function loadJson(url) { // (1)
+//   let response = await fetch(url); // (2)
 
-	var promise = new Promise(function(resolve, reject) {
+//   if (response.status == 200) {
+//     let json = await response.json(); // (3)
+//     return json;
+//   }
 
-		//любоq асинхронный процесс
-	  	setTimeout(() => { 
-	  		resolve("result"); 
-	  	}, 1000);
+//   throw new Error(response.status);
+// }
 
-	  // resolve(результат) при успешном выполнении
-	  // reject(ошибка) при ошибке
-	})
+// loadJson('no-such-user.json')
+//   .catch(alert); // Error: 404 (4)
+//---------------------------------------------
+	// const myTestPromise = new Promise((resolve, reject) => {
+	//     let b = false;
 
-	//Использование
-	// promise.then навешивает обработчики на успешный результат или ошибку
-	promise
-	  	.then(
-	    	result => alert("Fulfilled: " + result), //resolve
-	    	error => alert("Rejected: " + error.message) // Rejected: время вышло!
-	  	);
+	//     if (b) {
+	//         resolve('all ok =)');
+	//     } else {
+	//         reject('everything broke =(');
+	//     }
+	// });
 
-//--- Промис | Промисификация ---------------------------------------
-	function httpGet(url) {
+	// myTestPromise
+	//     .then(function f(result) {
+	//         console.log(result);
+	//     })
+	//     .catch(function err(e) {
+	//         console.log(e);
+	//     });
 
-	  	return new Promise(function(resolve, reject) {
+//------------------
+	// async function myTestAsync() {
+		
 
-		    var xhr = new XMLHttpRequest();
-		    xhr.open('GET', url, true);
+	// 	let promise = new Promise((resolve, reject) => {
+	// 	    let b = false;
 
-		    xhr.onload = function() {
-		      	if (this.status == 200) {
-		        	resolve(this.response); //*
-		      	} else {
-		        	var error = new Error(this.statusText);
-		        	error.code = this.status;
-		        	reject(error); //*
-		      	}
-		    };
+	// 	    if (b) {
+	// 	        resolve('all ok =)');
+	// 	    } else {
+	// 	        throw new Error('everything broke =(');
+	// 	    }
+	// 	});
+		
 
-		    xhr.onerror = function() {
-		      	reject(new Error("Network Error")); //*
-		    };
+		
 
-	    	xhr.send();
-	  	});
-	}
 
-	//Использование
-	httpGet("/article/promise/user.json")
-	  	.then(
-	    	response => alert(`Fulfilled: ${response}`),
-	    	error => alert(`Rejected: ${error}`)
-	  	);
+	// 	//return await promise;
 
-// --- Цепочки промисов | Чейнинг(chaining) -------------------------
+	// }
+
+	// myTestAsync()
+	//     .then(function f(result) {
+	//         console.log(result);
+	//     })
+	//     .catch(function err(e) {
+	//         console.log(e);
+	//     });
+const f1 = new Promise((resolve,reject) => {
+	setTimeout(()=> {
+		let result = 1000;
+		//console.log(result)
+		result ? resolve(result) : reject(new Error("Error!"));
+	}, 1000);
+}); 
+
+
+const f2 = new Promise((resolve,reject) => {
+	setTimeout(()=> {
+		let result = 2000;
+		//console.log(result)
+		result ? resolve(result) : reject(new Error("Error!")); //*
+	}, 2000);
+}); 
+
+// function f3() {
+// 	console.log('f3() run');
+// 	return 10;
+// }
+
+// Promise.all([f1, f2, f3]).then(values => {
+// 	console.log(values);
+// });
+
+
+f1.then(value1 => {
+		return Promise.all([f1(value1), f2(value2)])
+	});
+
+
+
+// f1.then(
+// 		res => {console.log(res);},
+// 		rej => {console.log(rej);}
+// 		);
+// f2.then(
+// 		res => {console.log(res);},
+// 		rej => {console.log(rej);}
+// 		);
+
+// const makeRequest = () => {
+//   return promise1()
+//     .then(value1 => {
+//       // do something
+//       return promise2(value1)
+//         .then(value2 => {
+//           // do something          
+//           return promise3(value1, value2)
+//         })
+//     })
+// }

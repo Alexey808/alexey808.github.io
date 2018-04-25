@@ -313,4 +313,58 @@ var user = JSON.parse(data); // преоброзование из строки �
             error => alert(`Rejected: ${error}`)
         );
 
-//--- Цепочки промисов | Чейнинг(chaining) --------------------------
+----------------
+
+//--из промиса в асинхронную функцию
+
+//function loadJson(url) {
+async function loadJson(url) {
+  
+    //return fetch(url)
+    let response = await fetch(url);
+  
+  
+    //.then(response => {
+    if (response.status == 200) {
+
+        //return response.json();
+        let json = await response.json();
+    } 
+
+    // else {
+    //      throw new Error(response.status);
+    //  }
+    //})
+
+    throw new Error(response.status);
+ 
+}
+
+loadJson('no-such-user.json') // (3)
+    .catch(alert); // Error: 404
+
+
+
+//--промис
+const myTestPromise = new Promise((resolve, reject) => {
+    let b = true;
+  // выполняется асинхронная операция, которая в итоге вызовет:
+  //
+  //   resolve(someValue); // успешное завершение
+  // или
+  //   reject("failure reason"); // неудача
+    if (b) {
+        resolve('all ready');
+    } else {
+        reject('everything broke');
+    }
+
+});
+
+myTestPromise
+    .then(function f(result) {
+        console.log(result);
+    })
+    .catch(function err(e) {
+        console.log(e);
+    });
