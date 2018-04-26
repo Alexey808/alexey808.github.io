@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.angularjs.org/1.5.0-rc.1/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0-rc.1/angular-animate.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+<body>
+  <h1>Christmas Songs</h1>
+  <hr/>
+  <card-component title="Mariah Carey">
+    All I Want for Christmas Is You
+  </card-component>
+  <card-component></card-component>
+  <hr/>
+  <card title="Mariah Carey">
+    All I Want for Christmas Is You
+  </card>
+  <card></card>
+  <hr/>
+  <multislot-card>
+    <card-title>Mariah Carey</card-title>
+    <card-song>All I Want for Christmas Is You</card-song>
+  </multislot-card>
+  <multislot-card></multislot-card>
+</body>
+</html>
