@@ -80,22 +80,22 @@
 	//     .catch(function err(e) {
 	//         console.log(e);
 	//     });
-const f1 = new Promise((resolve,reject) => {
-	setTimeout(()=> {
-		let result = 1000;
-		//console.log(result)
-		result ? resolve(result) : reject(new Error("Error!"));
-	}, 1000);
-}); 
+// const f1 = new Promise((resolve,reject) => {
+// 	setTimeout(()=> {
+// 		let result = 1000;
+// 		//console.log(result)
+// 		result ? resolve(result) : reject(new Error("Error!"));
+// 	}, 1000);
+// }); 
 
 
-const f2 = new Promise((resolve,reject) => {
-	setTimeout(()=> {
-		let result = 2000;
-		//console.log(result)
-		result ? resolve(result) : reject(new Error("Error!")); //*
-	}, 2000);
-}); 
+// const f2 = new Promise((resolve,reject) => {
+// 	setTimeout(()=> {
+// 		let result = 2000;
+// 		//console.log(result)
+// 		result ? resolve(result) : reject(new Error("Error!")); //*
+// 	}, 2000);
+// }); 
 
 // function f3() {
 // 	console.log('f3() run');
@@ -106,30 +106,33 @@ const f2 = new Promise((resolve,reject) => {
 // 	console.log(values);
 // });
 
+//--------------------------классы
+'use strict'
+class unit {
+	constructor(newName = 'UNIT!') {
+		this.unitName = newName;
+	}
 
-f1.then(value1 => {
-		return Promise.all([f1(value1), f2(value2)])
-	});
+	get getName() { return this.unitName; }
+	set setName(newName) { this.unitName = newName; }
+}
+
+
+class race extends unit {
+	constructor(race = "RACE!") {
+		super();
+		this.race = race;
+	}
+
+	get getRace() { return this.race; }
+	set setRace(race) { this.race = race; }
+}
+
+let u = new race();
 
 
 
-// f1.then(
-// 		res => {console.log(res);},
-// 		rej => {console.log(rej);}
-// 		);
-// f2.then(
-// 		res => {console.log(res);},
-// 		rej => {console.log(rej);}
-// 		);
+u.setName = "laiten";
+u.setRace = "elf";
 
-// const makeRequest = () => {
-//   return promise1()
-//     .then(value1 => {
-//       // do something
-//       return promise2(value1)
-//         .then(value2 => {
-//           // do something          
-//           return promise3(value1, value2)
-//         })
-//     })
-// }
+console.log(u);
