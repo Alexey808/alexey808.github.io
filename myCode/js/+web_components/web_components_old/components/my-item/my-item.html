@@ -1,0 +1,48 @@
+
+<body>
+
+<template id="tmpl">
+	<section>
+		<h2>Title</h2>
+		<div>content</div>
+		<div class="content">
+      	<content></content>
+    </div>
+	</section>
+</template>
+
+<script>
+	// !function() {
+
+class MyItem extends HTMLElement {
+ constructor() {
+	var localDocument = document.currentScript.ownerDocument;
+	var tmpl = localDocument.getElementById('tmpl');
+
+	var MyItem = Object.create(HTMLElement.prototype);
+
+	MyItem.createdCallback = function() {
+		var root = this.createShadowRoot();
+		root.appendChild(tmpl.content.cloneNode(true));
+	};
+
+	// document.registerElement("my-item", {
+	// 	prototype: MyItem
+	// });
+
+
+	console.log(123,localDocument, tmpl, MyItem);
+
+	// var constructor = document.registerElement(tag-name, options);
+	// customElements.define(name, constructor, options);
+	// customElements.define("my-item", MyItem, {
+	// 	prototype: MyItem
+	// });
+}
+}
+
+	customElements.define("my-item", MyItem);
+// }();
+</script>
+
+</body>
